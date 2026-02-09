@@ -8,10 +8,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <style>
+        html {
+            font-size: 62.5%;
+        }
+        
         :root {
-            --edge-gap: 13px; /* spacing equal to screen border */
+            --edge-gap: 0.7vw; /* spacing equal to screen border - responsive */
         }
         body {
+            font-size: 1.6rem;
             font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -22,7 +27,7 @@
             letter-spacing: -0.01em;
         }
             :root {
-                --edge-gap: 13px; /* spacing equal to screen border */
+                --edge-gap: 0.7vw; /* spacing equal to screen border - responsive */
                 --base-tracking: 0em; /* reference image uses neutral tracking */
             }
             body {
@@ -208,7 +213,17 @@
         }
         
         .image-index {
-            display: none !important;
+            position: absolute;
+            bottom: 0.7vw;
+            left: 0.7vw;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.3vw 0.6vw;
+            font-size: 1vw;
+            font-weight: 500;
+            border-radius: 0.3vw;
+            z-index: 10;
+            pointer-events: none;
         }
 
         /* Hero (first) image should cover and be cropped top/bottom equally */
@@ -279,7 +294,7 @@
         }
 
         /* Very thin scrollbars: target ~1/10 of a typical default */
-        :root { --thin-scrollbar: 3px; }
+        :root { --thin-scrollbar: 0.15vw; }
 
         /* WebKit browsers (Chrome, Safari) */
         ::-webkit-scrollbar { width: var(--thin-scrollbar); height: var(--thin-scrollbar); }
@@ -328,23 +343,24 @@
         .meta-item { margin-bottom: 0; }
         /* Use a single container gap so spacing between all meta items is uniform */
         .meta-list { display: flex; flex-direction: column; gap: 16px; }
+            /* Use a single container gap so spacing between all meta items is uniform */
+            .meta-list { display: flex; flex-direction: column; gap: 0.85vw; }
         /* Place multiple metadata items on a single row when needed */
-        .meta-row { display: flex; gap: 16px; align-items: baseline; }
-        .meta-item { display: flex; gap: 4px; align-items: flex-start; }
-        .meta-label { color: #000; flex-shrink: 0; }
-        .meta-value { color: #000; flex: 1; word-wrap: break-word; }
+        .meta-row { display: flex; gap: 0.85vw; align-items: baseline; }
+        .meta-label { color: #000; margin-right: 0.4vw; }
+        .meta-value { color: #000; }
         /* Typographic size rules - responsive viewport units */
         /* Navigation category buttons (WORK / PRESS / CONTACT) */
-        #menu-list button, .menu-item { font-size: 14px !important; font-weight: 500 !important; }
+        #menu-list button, .menu-item { font-size: 1.3vw !important; font-weight: 500 !important; }
         /* Project list items */
-        #project-list button, .project-item { font-size: 14px !important; }
+        #project-list button, .project-item { font-size: 0.7vw !important; }
         /* Active project title in details */
-        #project-details h2 { font-size: 14px !important; font-weight: 500 !important; line-height: 1.0 !important; }
+        #project-details h2 { font-size: 1.3vw !important; font-weight: 500 !important; line-height: 1.0 !important; }
         /* Project descriptions (Korean + English) */
-        #project-details .space-y-4 p { font-size: 14px !important; color: #000 !important; line-height: 1.3 !important; }
+        #project-details .space-y-4 p { font-size: 0.7vw !important; color: #000 !important; line-height: 1.3 !important; }
         /* Project metadata (프로젝트 정보) */
         #project-details .meta-item, #project-details .meta-label, #project-details .meta-value {
-            font-size: 14px !important;
+            font-size: 0.7vw !important;
             color: #000 !important;
             line-height: 1.3 !important;
         }
@@ -774,7 +790,7 @@
             #press-list,
             #press-list li,
             #press-list a {
-                font-size: 14px !important;
+                font-size: 2.5vw !important;
                 line-height: 1.3 !important;
             }
 
@@ -784,11 +800,11 @@
 
             /* Press content on mobile */
             #press-content {
-                font-size: 14px !important;
+                font-size: 2.5vw !important;
             }
 
             #press-list .project-item {
-                font-size: 14px !important;
+                font-size: 2.5vw !important;
             }
 
             /* Project grid on mobile (if used) */
@@ -840,7 +856,7 @@
     <!-- Mobile Project List Dropdown (for active project screen) -->
     <div id="mobile-project-list-dropdown" style="display: none;"></div>
     
-    <div id="root" class="w-screen h-screen overflow-hidden" style="padding: 13px;">
+    <div id="root" class="w-screen h-screen overflow-hidden" style="padding: 0.7vw;">
         <div class="flex w-full h-full bg-white overflow-hidden">
             
             <!-- MAIN CONTENT AREA -->
@@ -849,17 +865,17 @@
             </main>
 
             <!-- SIDEBAR -->
-            <aside id="sidebar" class="w-[18%] h-full flex flex-col relative pt-0 border-l border-transparent select-none" style="min-width: 345px; padding-right: 16px; padding-bottom: 3px; overflow: hidden;">
+            <aside id="sidebar" class="w-[18%] h-full flex flex-col relative pt-0 border-l border-transparent select-none" style="min-width: 18vw; padding-right: 0.85vw; padding-bottom: 0.15vw; overflow: hidden;">
                 
                 <!-- LOGO (Always at top, aligned with text) -->
-                <header class="z-10" style="display: flex; justify-content: flex-start; flex-shrink: 0; margin-bottom: 24px; margin-top: 5px;">
+                <header class="z-10" style="display: flex; justify-content: flex-start; flex-shrink: 0; margin-bottom: 1.25vw; margin-top: -0.4vw;">
                     <button id="logo-btn" class="hover:opacity-70 transition-opacity outline-none p-0 border-none bg-transparent cursor-pointer" style="display: block; margin: 0; margin-left: 0;">
-                        <img id="logo-img" alt="StudioPinVice" style="height: 1.5vw; width: auto; display: block; margin: 0; object-fit: contain;" />
+                        <img id="logo-img" alt="StudioPinVice" style="height: 3.5vw; width: auto; display: block; margin: 0; object-fit: contain;" />
                     </button>
                 </header>
 
                 <!-- NAVIGATION -->
-                <nav style="flex-shrink: 0; margin-bottom: 24px; margin-top: 0;">
+                <nav style="flex-shrink: 0; margin-bottom: 1.25vw; margin-top: 0;">
                     <ul id="menu-list" class="space-y-0 p-0 m-0 list-none">
                         <!-- WORK, PRESS, CONTACT injected here -->
                     </ul>
@@ -868,14 +884,14 @@
                 <!-- WORK CATEGORY CONTENT -->
                 <div id="work-content" class="flex-1 flex flex-col" style="min-height: 0; overflow: hidden;">
                     <!-- PROJECT LIST - SCROLLABLE -->
-                    <div style="flex: 0 0 auto; overflow: visible; margin-bottom: 27px; margin-top: 0;" class="no-scrollbar">
+                    <div style="flex: 0 1 auto; overflow-y: auto; overflow-x: hidden; margin-bottom: 1.4vw; margin-top: 0;" class="no-scrollbar">
                         <ul id="project-list" class="space-y-0 p-0 m-0 list-none">
                             <!-- Project titles injected here -->
                         </ul>
                     </div>
 
                     <!-- PROJECT DETAILS - SCROLLABLE (separate from project list) -->
-                    <div id="project-details-container" style="flex: 0 0 auto; height: 300px; overflow-y: auto; overflow-x: hidden; max-width: 470px; margin-top: auto; display: flex; flex-direction: column; justify-content: flex-end;" class="no-scrollbar">
+                    <div style="flex: 0 1 auto; overflow-y: auto; overflow-x: hidden; max-width: 24.5vw; margin-top: auto;" class="no-scrollbar">
                         <div id="project-details" style="padding-top: 0; padding-bottom: 0;">
                             <!-- Active project metadata injected here -->
                         </div>
@@ -883,28 +899,28 @@
                 </div>
 
                 <!-- CONTACT CATEGORY CONTENT (Hidden by default) -->
-                <div id="contact-content" class="hidden font-medium mt-2" style="font-size: 14px !important; flex-direction: column; gap: 48px; line-height: 1.3 !important; font-weight: 500;">
-                    <div style="display: flex; flex-direction: column; gap: 7px; font-size: 14px !important; line-height: 1.3 !important;">
-                        <div class="flex" style="font-size: 14px !important; line-height: 1.3 !important;">
-                            <span style="font-size: 14px !important; line-height: 1.3 !important; font-weight: 500; letter-spacing: 0em;">+82 (0) 10 3124 8695</span>
+                <div id="contact-content" class="hidden font-medium mt-2" style="font-size: 0.7vw; flex-direction: column; gap: 2.5vw; line-height: 1.3;">
+                    <div style="display: flex; flex-direction: column; gap: 0.35vw;">
+                        <div class="flex">
+                            <span class="tracking-tight">+82 (0) 10 3124 8695</span>
                         </div>
-                        <div class="flex" style="font-size: 14px !important; line-height: 1.3 !important;">
-                            <a href="mailto:info@studiopinvice.kr" class="hover:opacity-60 transition-opacity" style="font-size: 14px !important; line-height: 1.3 !important; font-weight: 500; text-decoration: none; color: #000;">info@studiopinvice.kr</a>
+                        <div class="flex">
+                            <a href="mailto:info@studiopinvice.kr" class="hover:opacity-60 transition-opacity">info@studiopinvice.kr</a>
                         </div>
-                        <div class="flex" style="font-size: 14px !important; line-height: 1.3 !important;">
-                            <a href="https://instagram.com/studiopinvice" target="_blank" rel="noreferrer" class="hover:opacity-60 transition-opacity" style="font-size: 14px !important; line-height: 1.3 !important; font-weight: 500; text-decoration: none; color: #000;">@studiopinvice</a>
+                        <div class="flex">
+                            <a href="https://instagram.com/studiopinvice" target="_blank" rel="noreferrer" class="hover:opacity-60 transition-opacity">@studiopinvice</a>
                         </div>
                     </div>
-                    <div style="display: flex; flex-direction: column; gap: 2px; font-size: 14px !important; line-height: 1.3 !important;">
-                        <a href="https://www.google.com/maps/search/?api=1&query=StudioPinVice+172+Cheonggyecheon-ro+Jung-gu+Seoul" target="_blank" rel="noreferrer" class="hover:opacity-60 transition-opacity" style="text-decoration: none; color: #000; font-size: 14px !important; line-height: 1.3 !important; font-weight: 500;">
-                            <p class="m-0 p-0" style="font-size: 14px !important; line-height: 1.3 !important; font-weight: 500; letter-spacing: 0em;">5F 172 Cheonggyecheon-ro</p>
-                            <p class="m-0 p-0" style="font-size: 14px !important; line-height: 1.3 !important; font-weight: 500; letter-spacing: 0em;">Jung-gu Seoul KR</p>
+                    <div style="display: flex; flex-direction: column; gap: 0.1vw;" class="tracking-tight">
+                        <a href="https://www.google.com/maps/search/?api=1&query=StudioPinVice+172+Cheonggyecheon-ro+Jung-gu+Seoul" target="_blank" rel="noreferrer" class="hover:opacity-60 transition-opacity" style="text-decoration: none; color: inherit;">
+                            <p class="m-0 p-0">5F 172 Cheonggyecheon-ro</p>
+                            <p class="m-0 p-0">Jung-gu Seoul KR</p>
                         </a>
                     </div>
                 </div>
 
                 <!-- PRESS CATEGORY CONTENT (Hidden by default) -->
-                <div id="press-content" class="hidden font-medium mt-2" style="font-size: 14px;">
+                <div id="press-content" class="hidden font-medium mt-2" style="font-size: 0.7vw;">
                     <ul id="press-list" class="space-y-0 p-0 m-0 list-none">
                         <li class="leading-none">
                             <a href="https://www.instagram.com/p/DKtt3tTtfAG/" target="_blank" rel="noopener noreferrer" class="project-item text-left w-full transition-all inactive-project font-medium p-0 border-none bg-transparent cursor-pointer hover:opacity-70" style="line-height: 1.3 !important; text-decoration: none;">
@@ -943,11 +959,10 @@
                 title: '1-5 Design Lab Hannam',
                 type: 'Academy',
                 client: '1-5 Design Lab Hannam',
-                location: 'Hannam-daero 59, Yongsan-gu, Seoul',
+                location: '서울 용산구 한남대로 59',
                 floorArea: '332.84m² (100.68PY)',
-                involvement: 'Concept Design, Construction',
-                date: 'February 2025',
-                photography: 'Han Sunghoon',
+                involvement: '컨셉 디자인, 시공',
+                date: '2025년 2월',
                 descriptionKo: '1-5 디자인 랩은 유럽과 미국의 명문 예술학교 입시를 준비하는 디자인 아카데미로 입시생의 작업 과정이 작품처럼 보일 수 있도록, 갤러리와 워크샵을 결합한 형태로 디자인 했습니다.',
                 descriptionEn: 'The 1-5 Design Lab is a design academy preparing for entrance exams to prestigious art schools in Europe and the United States, and it is designed in a combination of galleries and workshops so that the process of the applicants looks like a work.',
                 imageUrl: 'https://raw.githubusercontent.com/ai-studio-pro/assets/main/studio-pinvice/05.jpg'
@@ -957,9 +972,9 @@
                 title: 'MMA Photo Booth',
                 type: 'Installation',
                 client: 'Kakao entertainment',
-                location: 'Inspire Arena, 127 Gonghang-munhwa-ro, Jung-gu, Incheon',
-                involvement: 'Concept Design, Production',
-                date: 'December 2024',
+                location: '인천 중구 공항문화로 127, 인스파이어 아레나',
+                involvement: '컨셉 디자인, 제작',
+                date: '2024년 12월',
                 descriptionKo: '사일로랩과 협업하여 만든 본 모듈부스는 다회용으로 제작되었으며 행사에 맞게 여러 형태로 분해 조립이 가능합니다. 최초로 멜론뮤직 어워드의 아티스트 포토 부스로 사용 되었으며 이후 세미콘 코리아 도쿄 일렉트론 부스에 사용될 예정입니다.',
                 descriptionEn: 'Created in collaboration with Silo Lab, this module booth is multi-use and can be disassembled and assembled in several forms to suit the event. It was used as the artist photo booth at the Melon Music Awards for the first time, and will later be used for the Semicon Korea Tokyo Electron booth.',
                 imageUrl: ''
@@ -969,11 +984,10 @@
                 title: 'Place 1-3 / 1-1 Company',
                 type: 'Retail Shop / Office',
                 client: 'Hyphen',
-                location: 'Palpan-gil 23, Jongno-gu, Seoul',
+                location: '서울 종로구 팔판길 23',
                 floorArea: '415.94㎡(125.28PY)',
-                involvement: 'Concept Design, Construction',
-                date: 'April 2025',
-                photography: 'Han Sunghoon',
+                involvement: '컨셉 디자인, 시공',
+                date: '2025년 4월',
                 descriptionKo: '주식회사 하이픈의 사옥을 디자인한 프로젝트로 사옥의 1층은 하이픈의 리테일 브랜드 Place1-3이 입점해 있습니다. 리테일 샵은 액자의 프레임을 컨셉으로 작업했습니다. 가구의 테두리와 안쪽에 그리드를 만들어 다량의 상품 진열 시에도 정돈된 분위기를 유지할 수 있습니다. 또한 중앙 선반을 도입해 스킵 플로어 구조의 단절을 보완하고 수직적 공간감을 확보했습니다.',
                 descriptionEn: 'It is a project that designed Hyphen\'s office building, and the first floor of the office building is home to Hyphen\'s retail brand Place 1-3. Retail Shop worked with the concept of framed frames. By creating grids on the edges and inside of furniture, you can maintain an organized atmosphere even when displaying large quantities of goods. It also introduced a center shelf to compensate for the disconnection of the skip floor structure and secure a sense of vertical space.',
                 imageUrl: ''
@@ -983,10 +997,9 @@
                 title: 'Chapel of OneLifeWelfare',
                 type: 'Chapel',
                 client: 'One Life Welfare',
-                location: '1706 Singil-dong, Ansan-si, Gyeonggi-do',
-                involvement: 'Concept Design, Construction',
-                date: 'December 2025',
-                photography: 'Han Sunghoon',
+                location: '경기도 안산시 신길동 1706',
+                involvement: '컨셉 디자인, 시공',
+                date: '2025년 12월',
                 descriptionKo: '한생명복지재단의 예배당 프로젝트입니다. 기독교적 상징과 모성을 모티브로 한 오브젝트를 배치하여 단체의 사회적 역할을 표현했습니다.',
                 descriptionEn: 'A chapel project for the One Life Welfare Foundation. Objects with Christian symbols and motherhood as motifs were placed to express the social role of the group.',
                 imageUrl: ''
@@ -996,11 +1009,10 @@
                 title: 'One Life Welfare Community Center',
                 type: 'Complex',
                 client: 'One Life Welfare',
-                location: '1706 Singil-dong, Ansan-si, Gyeonggi-do',
+                location: '경기도 안산시 신길동 1706',
                 floorArea: '328.82㎡(99.47PY)',
-                involvement: 'Concept Design, Construction',
-                date: 'December 2025',
-                photography: 'Han Sunghoon',
+                involvement: '컨셉 디자인, 시공',
+                date: '2025년 12월',
                 descriptionKo: '한생명복지재단의 복합문화센터를 디자인 했습니다. 한생명복지재단은 기독교 기반의 기부재단으로 미혼모 보호와 지원을 주된 사업으로 진행하는 비영리 단체입니다. 중앙 홀은 기독교적 상징과 모성을 모티브로 한 오브젝트를 배치하여 단체의 사회적 역할을 표현했습니다. 이어서 홍해와 언덕을 메타포로 활용하여 작업한 예배당과 자연물을 단순화시켜 표현한 어린이 도서관을 작업했습니다.',
                 descriptionEn: 'We designed the Korea Life Welfare Foundation\'s Multicultural Center. The Korea Life Welfare Foundation is a Christian-based donation foundation that is a non-profit organization whose main business is to protect and support single mothers. The central hall expressed the social role of the group by placing objects with Christian symbols and motherhood as motifs. Worked on a chapel using the Red Sea and hills as metaphors and a children\'s library that simplified and expressed natural objects.',
                 imageUrl: ''
@@ -1011,8 +1023,8 @@
                 type: 'Manual Design',
                 client: 'Mastercard / Korea Post',
                 signage: '1-1Company',
-                involvement: 'Concept Design, Basic Drawings',
-                date: 'August 2025',
+                involvement: '컨셉 디자인, 기본도면',
+                date: '2025년 8월',
                 descriptionKo: '우정사업본부 산하 우체국 예금의 VIP 라운지 메뉴얼 디자인을 진행했습니다. 기존의 우체국 예금의 브랜드 컬러인 노란색을 메이플 우드로 치환하여 고급스러운 무드로 재해석 했습니다. 또한 천정 몰딩을 우표의 테두리 형태로 고안하여 기존 우체국과의 시각적 연결성을 유지했습니다.',
                 descriptionEn: 'We conducted a VIP lounge manual design of post office deposits under the Post Office. Yellow, the brand color of the existing post office deposit, was replaced with maple wood to reinterpret it in a luxurious mood. Furthermore, the ceiling molding was designed in the form of a border of stamps to maintain visual connectivity with existing post offices.',
                 imageUrl: ''
@@ -1022,10 +1034,10 @@
                 title: 'Unbannable Art Piece',
                 type: 'Installation',
                 client: 'Nike',
-                location: '322-39 Seongsu-dong 2-ga, Seongdong-gu, Seoul',
+                location: '서울 성동구 성수동2가 322-39',
                 size: '3200×750×65',
-                involvement: 'Concept Design, Production',
-                date: 'January 2025',
+                involvement: '컨셉 디자인, 제작',
+                date: '2025년 01월',
                 descriptionKo: '텔레포트와 협업하여 UNBANNABLE CELEBRATION PARTY의 아트피스를 제작했습니다. 성수에서 열린 UNBANNABLE CELEBRATION PARTY 행사는 나이키 조던이 지난 40년간 선사해 온 영향력을 기념하는 파티로, 기념일이라는 경계적 순간을 강조하기 위해 메인 슬로건의 테두리가 조명에 의해 반사되는 디자인을 고안했습니다.',
                 descriptionEn: 'In collaboration with Teleport, an art piece was created for the UNBANNABLE CELEBRATION PARTY. The UNBANNABLE CELEBRATION PARTY event in Seongsu is a party that celebrates Nike Jordan\'s influence over the past 40 years, with the design featuring the rim of the main slogan reflected by lighting to highlight the iconic moment of the anniversary.',
                 imageUrl: ''
@@ -1035,8 +1047,8 @@
                 title: 'Module Booth 2.0',
                 type: 'Installation',
                 client: 'Silo Lab.',
-                involvement: 'Concept Design, Detailed Drawings',
-                date: 'November 2025',
+                involvement: '컨셉 디자인, 실시도면',
+                date: '2025년 11월',
                 descriptionKo: '본 모듈은 SM 엔터테인먼트의 월드투어용 포토부스를 목적으로 고안되어 항공 및 해상운송, 적재에 용이하고, 현장에서 전문인력 없이 조립이 가능하도록 고안되었습니다. 또한 모듈내부는 LED조명 삽입이 가능하며 여러 행사에 적용가능 하도록 다양한 형태로 조립될 수 있습니다.',
                 descriptionEn: 'This module is designed for the purpose of SM Entertainment\'s world tour photo booth and is designed to facilitate air and sea transportation and loading, and to be assembled without professionals in the field. The LED lighting can also be inserted inside the module and can be assembled in various forms to be applied to various events.',
                 imageUrl: ''
@@ -1047,8 +1059,8 @@
                 type: 'Furniture',
                 material: 'Concrete, Stainless steel',
                 size: '320×430×1500',
-                involvement: 'Concept Design, Production',
-                date: 'October 2024',
+                involvement: '컨셉 디자인, 제작',
+                date: '2024년 10월',
                 descriptionKo: '단면의 조형성을 탐구하며 고안한 가구로 해부학적 시상면으로 자른 형태의 의자를 제작했습니다. 의자는 척추와 직접적으로 닿지 않습니다.',
                 descriptionEn: 'Exploring the formality of the cross-section, this furniture is a chair cut in the form of an anatomical sagittal plane. The chair does not directly touch the spine.',
                 imageUrl: ''
@@ -1158,6 +1170,7 @@
             '../6.KoreaPost/6.png',
             '../6.KoreaPost/7.png',
             '../6.KoreaPost/8.png',
+            '../6.KoreaPost/9.jpg',
             '../6.KoreaPost/10.jpg',
             '../6.KoreaPost/11.png',
             '../6.KoreaPost/12.png',
@@ -1377,10 +1390,10 @@
                 if (mobileDropdown) {
                     mobileDropdown.style.display = 'block';
                     const pressItems = [
-                        { title: '[Industrial konzept] 1-5 Design Lab', url: 'https://www.instagram.com/p/DKtt3tTtfAG/' },
-                        { title: '[Leibal] 1-5 Design Lab', url: 'https://leibal.com/interiors/1-5-design-lab/' },
-                        { title: '[ELLE Japan] Place 1-3', url: 'https://www.elle.com/jp/culture/travel/g43898562/seoul-hot-spot-now-230524/#:~:text=place1-3%20(%E3%83%97%E3%83%AC%E3%82%A4%E3%82%B9%20%E3%82%A4%E3%83%AB%E3%83%80%E3%82%B7%E3%82%B5%E3%83%A0)' },
-                        { title: '[New Norm] Place 1-3', url: 'https://www.newnormmag.com/place1-3/1-1company-studio-pin-vice' }
+                        { title: 'Industrial konzept - 1-5 Design Lab', url: 'https://www.instagram.com/p/DKtt3tTtfAG/' },
+                        { title: 'Leibal - 1-5 Design Lab', url: 'https://leibal.com/interiors/1-5-design-lab/' },
+                        { title: 'ELLE Japan - Place 1-3', url: 'https://www.elle.com/jp/culture/travel/g43898562/seoul-hot-spot-now-230524/#:~:text=place1-3%20(%E3%83%97%E3%83%AC%E3%82%A4%E3%82%B9%20%E3%82%A4%E3%83%AB%E3%83%80%E3%82%B7%E3%82%B5%E3%83%A0)' },
+                        { title: 'New Norm - Place 1-3', url: 'https://www.newnormmag.com/place1-3/1-1company-studio-pin-vice' }
                     ];
                     
                     mobileDropdown.innerHTML = pressItems.map(item => `
@@ -1572,10 +1585,10 @@
                     if (mobileDropdown) {
                         mobileDropdown.style.display = 'block';
                         const pressItems = [
-                            { title: '[Industrial konzept] 1-5 Design Lab', url: 'https://www.instagram.com/p/DKtt3tTtfAG/' },
-                            { title: '[Leibal] 1-5 Design Lab', url: 'https://leibal.com/interiors/1-5-design-lab/' },
-                            { title: '[ELLE Japan] Place 1-3', url: 'https://www.elle.com/jp/culture/travel/g43898562/seoul-hot-spot-now-230524/#:~:text=place1-3%20(%E3%83%97%E3%83%AC%E3%82%A4%E3%82%B9%20%E3%82%A4%E3%83%AB%E3%83%80%E3%82%B7%E3%82%B5%E3%83%A0)' },
-                            { title: '[New Norm] Place 1-3', url: 'https://www.newnormmag.com/place1-3/1-1company-studio-pin-vice' }
+                            { title: 'Industrial konzept - 1-5 Design Lab', url: 'https://www.instagram.com/p/DKtt3tTtfAG/' },
+                            { title: 'Leibal - 1-5 Design Lab', url: 'https://leibal.com/interiors/1-5-design-lab/' },
+                            { title: 'ELLE Japan - Place 1-3', url: 'https://www.elle.com/jp/culture/travel/g43898562/seoul-hot-spot-now-230524/#:~:text=place1-3%20(%E3%83%97%E3%83%AC%E3%82%A4%E3%82%B9%20%E3%82%A4%E3%83%AB%E3%83%80%E3%82%B7%E3%82%B5%E3%83%A0)' },
+                            { title: 'New Norm - Place 1-3', url: 'https://www.newnormmag.com/place1-3/1-1company-studio-pin-vice' }
                         ];
                         
                         mobileDropdown.innerHTML = pressItems.map(item => `
@@ -1889,10 +1902,26 @@
                             img.parentElement.style.margin = '0';
                         }
                     } else if (isPortrait) {
-                        // Portrait: set size, no margin manipulation
+                        // Portrait: apply random-like margin offset to container
                         img.style.width = 'auto';
                         img.style.height = 'auto';
-                        img.parentElement.style.margin = '0';
+                        
+                        // Generate pseudo-random margin using prime multipliers
+                        const seed = (idx * 17 + 13) % 11;
+                        const margins = [
+                            '0 0 0 0',      // center
+                            '0 0 0 8%',     // slight left
+                            '0 8% 0 0',     // slight right
+                            '0 0 0 15%',    // left
+                            '0 15% 0 0',    // right
+                            '0 0 0 20%',    // more left
+                            '0 20% 0 0',    // more right
+                            '0 5% 0 5%',    // center with padding
+                            '0 0 0 12%',    // left-ish
+                            '0 12% 0 0',    // right-ish
+                            '0 3% 0 7%',    // offset center-left
+                        ];
+                        img.parentElement.style.margin = margins[seed];
                     } else {
                         // Landscape: fill width, center alignment, no margin
                         img.style.width = '100%';
@@ -1915,24 +1944,6 @@
             // Remove wheel-based snap navigation
             // Free scrolling is now enabled
             // Snap will only happen when user clicks on an image
-        }
-
-        // Adjust project details alignment based on content height
-        function adjustProjectDetailsAlignment() {
-            const container = document.getElementById('project-details-container');
-            const content = document.getElementById('project-details');
-            
-            if (!container || !content) return;
-            
-            // Check if content overflows
-            if (content.scrollHeight > container.clientHeight) {
-                // Content is overflowing - align to top (flex-start)
-                container.style.justifyContent = 'flex-start';
-                container.scrollTop = 0; // Scroll to top
-            } else {
-                // Content fits - align to bottom (flex-end)
-                container.style.justifyContent = 'flex-end';
-            }
         }
 
         function updateUI() {
@@ -1971,34 +1982,26 @@
                     { label: 'SIGNAGE', value: project.signage },
                     { label: 'INVOLVEMENT', value: project.involvement },
                     { label: 'DATE', value: project.date },
-                    { label: 'PHOTOGRAPHY', value: project.photography },
                 ].filter(item => item.value);
 
                 // Render metadata each on its own line (Type and Client separated)
                 projectDetails.innerHTML = `
                     <div style="display: flex; flex-direction: column; gap: 24px;">
                         <div style="display: flex; flex-direction: column; gap: 0px;">
-                            ${metadata.map(item => {
-                                const displayValue = item.label === 'PHOTOGRAPHY' 
-                                    ? `<a href="https://han-sunghoon.com/" target="_blank" style="color: #000; text-decoration: none; font-size: 14px !important; font-weight: 500 !important; line-height: 1.3 !important; font-family: inherit;">${item.value}</a>`
-                                    : item.value;
-                                return `
+                            ${metadata.map(item => `
                                 <div class="meta-item">
-                                    <span class="meta-label">${item.label.toLowerCase().replace(/^./, s => s.toUpperCase())} : </span>
-                                    <span class="meta-value">${displayValue}</span>
+                                    <span class="meta-label">${item.label.toLowerCase().replace(/^./, s => s.toUpperCase())}:</span>
+                                    <span class="meta-value">${item.value}</span>
                                 </div>
-                            `}).join('')}
+                            `).join('')}
                         </div>
                         <div class="space-y-4" style="display: flex; flex-direction: column; gap: 16px;">
-                            <p style="margin: 0; padding: 0; text-align: left;">${project.descriptionKo}</p>
-                            <p style="margin: 0; padding: 0; text-align: left; line-height: 1.15 !important;">${project.descriptionEn}</p>
+                            <p style="margin: 0; padding: 0; text-align: justify;">${project.descriptionKo}</p>
+                            <p style="margin: 0; padding: 0; text-align: justify; line-height: 1.15 !important;">${project.descriptionEn}</p>
                         </div>
                     </div>
                 `;
                 projectDetails.classList.remove('hidden');
-                
-                // Adjust alignment based on content height
-                adjustProjectDetailsAlignment();
             } else {
                 projectDetails.innerHTML = '';
                 projectDetails.classList.add('hidden');
@@ -2061,27 +2064,22 @@
                         { label: 'SIGNAGE', value: project.signage },
                         { label: 'INVOLVEMENT', value: project.involvement },
                         { label: 'DATE', value: project.date },
-                        { label: 'PHOTOGRAPHY', value: project.photography },
                     ].filter(item => item.value);
                     
                     projectInfoHTML = `
                         <div style="padding: 0px 15px 15px 15px; margin-bottom: 5px; font-size: 2vw !important;">
                             <div style="display: flex; flex-direction: column; gap: 24px;">
                                 <div style="display: flex; flex-direction: column; gap: 3px;">
-                                    ${metadata.map(item => {
-                                        const displayValue = item.label === 'PHOTOGRAPHY'
-                                            ? `<a href="https://han-sunghoon.com/" target="_blank" style="color: #000; text-decoration: none; font-size: 2vw !important; font-weight: 500 !important; line-height: 1.3 !important; font-family: inherit;">${item.value}</a>`
-                                            : item.value;
-                                        return `
+                                    ${metadata.map(item => `
                                         <div style="font-size: 2vw !important; line-height: 1.3 !important;">
                                             <span style="color: #000; font-size: 2vw !important;">${item.label.toLowerCase().replace(/^./, s => s.toUpperCase())}:</span>
-                                            <span style="color: #000; font-size: 2vw !important;"> ${displayValue}</span>
+                                            <span style="color: #000; font-size: 2vw !important;"> ${item.value}</span>
                                         </div>
-                                    `}).join('')}
+                                    `).join('')}
                                 </div>
                                 <div style="display: flex; flex-direction: column; gap: 16px;">
-                                    <p style="margin: 0; padding: 0; text-align: left; font-size: 2vw !important; line-height: 1.3 !important; word-wrap: break-word !important;">${project.descriptionKo}</p>
-                                    <p style="margin: 0; padding: 0; text-align: left; font-size: 2vw !important; line-height: 1.3 !important; word-wrap: break-word !important;">${project.descriptionEn}</p>
+                                    <p style="margin: 0; padding: 0; text-align: justify; font-size: 2vw !important; line-height: 1.3 !important; word-wrap: break-word !important;">${project.descriptionKo}</p>
+                                    <p style="margin: 0; padding: 0; text-align: justify; font-size: 2vw !important; line-height: 1.3 !important; word-wrap: break-word !important;">${project.descriptionEn}</p>
                                 </div>
                             </div>
                         </div>
@@ -2210,7 +2208,7 @@
                                     // 5-3: 완전히 좌측 끝 커스텀 렌더링 (다른 분기와 겹치지 않게 즉시 return)
                                     if (project.id === 'one-life-welfare-community-center' && idx === 2) {
                                         return `
-                                            <div class="image-wrap" data-align="left" style="position:relative;margin-left:-13px;display:flex;justify-content:flex-start !important;align-items:flex-start !important;width:calc(100% + 13px);padding:0 !important;margin-top:0 !important;margin-bottom:12vh !important;overflow:visible;box-sizing:content-box;cursor:default;">
+                                            <div class="image-wrap" data-align="left" style="position:relative;margin-left:-0.7vw;display:flex;justify-content:flex-start !important;align-items:flex-start !important;width:calc(100% + 0.7vw);padding:0 !important;margin-top:0 !important;margin-bottom:12vh !important;overflow:visible;box-sizing:content-box;cursor:default;">
                                                 <div class="image-container" style="width:100%;margin:0 !important;padding:0 !important;display:block;">
                                                     <img 
                                                         src="${url}" 
@@ -2229,15 +2227,10 @@
                                     let imgAttrsCustom = '';
                                     if (project.id === 'one-life-welfare-community-center' && idx === 1) {
                                         wrapAttrsCustom = 'data-align="right"';
-                                        imgAttrsCustom = 'data-align="right"';
+                                        imgAttrsCustom = 'data-align="right" style="transform: scale(1.3); object-fit: cover; object-position: right center;"';
                                     }
                                     // 5-9: 우측 끝 정렬
                                     if (project.id === 'one-life-welfare-community-center' && idx === 8) {
-                                        wrapAttrsCustom = 'data-align="right"';
-                                        imgAttrsCustom = 'data-align="right"';
-                                    }
-                                    // 1-14: 우측 끝 정렬
-                                    if (project.id === 'design-lab-1-5' && idx === 13) {
                                         wrapAttrsCustom = 'data-align="right"';
                                         imgAttrsCustom = 'data-align="right"';
                                     }
@@ -2262,7 +2255,7 @@
                                         `;
                                     }
                                     
-                                    // Special handling for 3-6 - align left, enlarge to 125% of viewport
+                                    // Special handling for 3-6 - align left, scale 1.25x from top-left
                                     if (project.id === 'place-1-3-1-1-company' && idx === 5) {
                                         const img6 = imgs[5];
                                         return `
@@ -2271,7 +2264,7 @@
                                                 <img 
                                                     src="${img6}" 
                                                     alt="${project.title} 6"
-                                                    style="height: calc(125vh - var(--edge-gap)) !important; width: auto; object-fit: contain; display: block; margin: 0 !important; cursor: pointer;"
+                                                    style="height: calc(100vh - var(--edge-gap)); width: auto; object-fit: contain; display: block; transform: scale(1.25); transform-origin: top left; margin: 0 !important; cursor: pointer;"
                                                     loading="eager"
                                                     onclick="scrollToImage(this)"
                                                 />
@@ -2319,149 +2312,12 @@
                                         return '';
                                     }
                                     
-                                    // Skip 2-10, 2-11, 2-12 as they will be rendered together with 2-9
-                                    if (project.id === 'mma-photo-booth' && (idx === 9 || idx === 10 || idx === 11)) {
-                                        return '';
-                                    }
-                                    
-                                    // Special handling for 3-14 - right align
-                                    if (project.id === 'place-1-3-1-1-company' && idx === 13) {
-                                        return `
-                                        <div class="image-wrap" data-align="right" style="display: flex !important; justify-content: flex-end !important; align-items: center !important; height: calc(100vh - var(--edge-gap)) !important; padding-right: 0 !important; margin-right: 0 !important;">
-                                            <div class="image-container" style="display: inline-flex !important; position: relative !important; max-height: none !important; max-width: none !important; margin-right: 0 !important;">
-                                                <img 
-                                                    src="${url}" 
-                                                    alt="${project.title} 14"
-                                                    data-align="right"
-                                                    style="height: calc(100vh - var(--edge-gap)) !important; width: auto !important; display: block !important; cursor: pointer !important; margin: 0 !important; padding: 0 !important;"
-                                                    loading="eager"
-                                                    onclick="scrollToImage(this)"
-                                                />
-                                                <div class="image-index">3-14</div>
-                                            </div>
-                                        </div>
-                                        `;
-                                    }
-                                    
-                                    // Special handling for 5-4 - center align
-                                    if (project.id === 'one-life-welfare-community-center' && idx === 3) {
-                                        return `
-                                        <div class="image-wrap" style="display: flex !important; justify-content: center !important; align-items: center !important; height: calc(100vh - var(--edge-gap)) !important;">
-                                            <div class="image-container" style="display: inline-flex !important; position: relative !important; max-height: none !important; max-width: none !important;">
-                                                <img 
-                                                    src="${url}" 
-                                                    alt="${project.title} 4"
-                                                    style="height: calc(100vh - var(--edge-gap)) !important; width: auto !important; display: block !important; cursor: pointer !important; margin: 0 !important;"
-                                                    loading="eager"
-                                                    onclick="scrollToImage(this)"
-                                                />
-                                                <div class="image-index">5-4</div>
-                                            </div>
-                                        </div>
-                                        `;
-                                    }
-                                    
-                                    // Special handling for 3-15 - align to right edge
-                                    if (project.id === 'place-1-3-1-1-company' && idx === 14) {
-                                        return `
-                                        <div class="image-wrap" data-align="right" style="display: flex !important; justify-content: flex-end !important; align-items: center !important; height: calc(100vh - var(--edge-gap)) !important; padding-right: 0 !important; margin-right: 0 !important;">
-                                            <div class="image-container" style="display: inline-flex !important; position: relative !important; max-height: none !important; max-width: none !important; margin-right: 0 !important;">
-                                                <img 
-                                                    src="${url}" 
-                                                    alt="${project.title} 15"
-                                                    data-align="right"
-                                                    style="height: calc(100vh - var(--edge-gap)) !important; width: auto !important; display: block !important; cursor: pointer !important; margin: 0 !important; padding: 0 !important;"
-                                                    loading="eager"
-                                                    onclick="scrollToImage(this)"
-                                                />
-                                                <div class="image-index">3-15</div>
-                                            </div>
-                                        </div>
-                                        `;
-                                    }
-                                    
-                                    // Special handling for 3-13 - left align
-                                    if (project.id === 'place-1-3-1-1-company' && idx === 12) {
-                                        const img13 = imgs[12];
-                                        return `
-                                        <div class="image-wrap" data-align="left" style="display: flex !important; justify-content: flex-start !important; align-items: center !important; padding: 0 !important; height: calc(100vh - var(--edge-gap)) !important; margin-left: 0 !important; overflow: visible !important;">
-                                            <div class="image-container" style="display: inline-flex !important; justify-content: flex-start !important; align-items: center !important; position: relative !important; margin-left: 0 !important; max-height: none !important; max-width: none !important; overflow: visible !important;">
-                                                <img 
-                                                    src="${img13}" 
-                                                    alt="${project.title} 13"
-                                                    data-align="left"
-                                                    style="height: calc(100vh - var(--edge-gap)) !important; width: auto !important; display: block !important; cursor: pointer !important; margin-left: 0 !important;"
-                                                    loading="eager"
-                                                    onclick="scrollToImage(this)"
-                                                />
-                                                <div class="image-index">3-13</div>
-                                            </div>
-                                        </div>
-                                        `;
-                                    }
-                                    
-                                    // Special handling for 2-9, 2-10, 2-11, 2-12 - render in 2x2 grid
-                                    if (project.id === 'mma-photo-booth' && idx === 8) {
-                                        const img9 = imgs[8];
-                                        const img10 = imgs[9];
-                                        const img11 = imgs[10];
-                                        const img12 = imgs[11];
-                                        return `
-                                        <div class="image-wrap" style="display: flex !important; flex-direction: column !important; gap: 13px !important; padding: 0 !important; height: calc(100vh - var(--edge-gap)) !important;">
-                                            <div style="display: flex !important; flex-direction: row !important; gap: 13px !important; flex: 1 !important;">
-                                                <div class="image-container" style="flex: 1 !important; display: flex !important; justify-content: center !important; align-items: center !important; height: 100% !important;">
-                                                    <img 
-                                                        src="${img9}" 
-                                                        alt="${project.title} 9"
-                                                        style="width: 100% !important; height: 100% !important; object-fit: contain !important; cursor: pointer !important; display: block !important;"
-                                                        loading="eager"
-                                                        onclick="scrollToImage(this)"
-                                                    />
-                                                    <div class="image-index">2-9</div>
-                                                </div>
-                                                <div class="image-container" style="flex: 1 !important; display: flex !important; justify-content: center !important; align-items: center !important; height: 100% !important;">
-                                                    <img 
-                                                        src="${img10}" 
-                                                        alt="${project.title} 10"
-                                                        style="width: 100% !important; height: 100% !important; object-fit: contain !important; cursor: pointer !important; display: block !important;"
-                                                        loading="eager"
-                                                        onclick="scrollToImage(this)"
-                                                    />
-                                                    <div class="image-index">2-10</div>
-                                                </div>
-                                            </div>
-                                            <div style="display: flex !important; flex-direction: row !important; gap: 13px !important; flex: 1 !important;">
-                                                <div class="image-container" style="flex: 1 !important; display: flex !important; justify-content: center !important; align-items: center !important; height: 100% !important;">
-                                                    <img 
-                                                        src="${img11}" 
-                                                        alt="${project.title} 11"
-                                                        style="width: 100% !important; height: 100% !important; object-fit: contain !important; cursor: pointer !important; display: block !important;"
-                                                        loading="eager"
-                                                        onclick="scrollToImage(this)"
-                                                    />
-                                                    <div class="image-index">2-11</div>
-                                                </div>
-                                                <div class="image-container" style="flex: 1 !important; display: flex !important; justify-content: center !important; align-items: center !important; height: 100% !important;">
-                                                    <img 
-                                                        src="${img12}" 
-                                                        alt="${project.title} 12"
-                                                        style="width: 100% !important; height: 100% !important; object-fit: contain !important; cursor: pointer !important; display: block !important;"
-                                                        loading="eager"
-                                                        onclick="scrollToImage(this)"
-                                                    />
-                                                    <div class="image-index">2-12</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        `;
-                                    }
-                                    
                                     // Special handling for 1-5 and 1-6 - render them side by side
                                     if (project.id === '1-5-design-lab' && idx === 4) {
                                         const img5 = imgs[4];
                                         const img6 = imgs[5];
                                         return `
-                                        <div class="image-wrap" style="display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: stretch !important; gap: 13px !important; padding: 0 !important; height: calc(100vh - var(--edge-gap)) !important;">
+                                        <div class="image-wrap" style="display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: stretch !important; gap: 0.7vw !important; padding: 0 !important; height: calc(100vh - var(--edge-gap)) !important;">
                                             <div class="image-container" style="flex: 1 !important; display: flex !important; justify-content: flex-start !important; align-items: stretch !important; height: 100% !important;">
                                                 <img 
                                                     src="${img5}" 
@@ -2492,8 +2348,8 @@
                                     const isUnbannableLast = project.id === 'unbannable-art-piece' && idx === imgs.length - 1;
                                     // Special handling for sagittal project image 3 (idx 2) - flip horizontally
                                     const isSagittal3 = project.id === 'sagittal-plane-of-a-chair' && idx === 2;
-                                    // Special handling for korea post image 10 (idx 8) - rotate -90deg (counterclockwise)
-                                    const isKoreaPost10 = project.id === 'korea-post-vip-lounge' && idx === 8;
+                                    // Special handling for korea post image 10 (idx 9) - rotate 90deg
+                                    const isKoreaPost10 = project.id === 'korea-post-vip-lounge' && idx === 9;
                                     // Special handling for 1-5 design lab image 3 (idx 2) - scale 1.35
                                     const isDesignLab3 = project.id === '1-5-design-lab' && idx === 2;
                                     // Special handling for 1-5 design lab image 2 (idx 1) - stick to left
@@ -2516,18 +2372,14 @@
                                     const isPlace13Image12 = project.id === 'place-1-3-1-1-company' && idx === 11;
                                     // Special handling for place 1-3 image 19 (idx 18) - center align
                                     const isPlace13Image19 = project.id === 'place-1-3-1-1-company' && idx === 18;
-                                    // Special handling for 5-4 (idx 3) - center align
-                                    const isOneLifeWelfare4 = project.id === 'one-life-welfare-community-center' && idx === 3;
-                                    // Special handling for chapel image 4 (idx 3) - move right 100px
-                                    const isChapel4 = project.id === 'chapel' && idx === 3;
                                     
                                     let scaleStyle = '';
                                     if (isUnbannableLast) {
                                         scaleStyle = '';
                                     } else if (isKoreaPost10) {
-                                        scaleStyle = 'transform: rotate(-90deg);';
+                                        scaleStyle = 'transform: rotate(90deg);';
                                     } else if (isDesignLab3) {
-                                        scaleStyle = 'height: calc(130vh - var(--edge-gap)) !important; margin-right: 30%;';
+                                        scaleStyle = 'transform: scale(1.3); transform-origin: bottom right; margin-right: 30%;';
                                     } else if (isDesignLab2) {
                                         scaleStyle = '';
                                     } else if (isDesignLab4) {
@@ -2544,8 +2396,6 @@
                                         scaleStyle = 'margin-left: 50px;';
                                     } else if (isPlace13Image11) {
                                         scaleStyle = 'transform: scale(1.2); transform-origin: center; object-fit: cover; object-position: center center; height: calc(100% - 200px);';
-                                    } else if (isChapel4) {
-                                        scaleStyle = 'margin-left: 600px;';
                                     }
                                     
                                     // Pre-set data attributes for instant alignment
@@ -2553,58 +2403,7 @@
                                     let imgAttrs = '';
                                     let wrapAlign = '';
                                     
-                                    if (project.id === 'one-life-welfare-community-center') {
-                                        if (idx === 3) {
-                                            // 5-4: center align
-                                            wrapAlign = '';  // No left/right alignment = centered by default
-                                        }
-                                        if (idx === 4) {
-                                            // 5-5: left align
-                                            imgAttrs = 'data-align="left"';
-                                            wrapAlign = 'data-align="left"';
-                                        }
-                                        if (idx === 10) {
-                                            // 5-11: left align
-                                            imgAttrs = 'data-align="left"';
-                                            wrapAlign = 'data-align="left"';
-                                        }
-                                        if (idx === 14) {
-                                            // 5-15: right align
-                                            imgAttrs = 'data-align="right"';
-                                            wrapAlign = 'data-align="right"';
-                                        }
-                                        if (idx === 17) {
-                                            // 5-18: left align
-                                            imgAttrs = 'data-align="left"';
-                                            wrapAlign = 'data-align="left"';
-                                        }
-                                        if (idx === 20) {
-                                            // 5-21: right align
-                                            imgAttrs = 'data-align="right"';
-                                            wrapAlign = 'data-align="right"';
-                                        }
-                                        if (idx === 21) {
-                                            // 5-22: left align
-                                            imgAttrs = 'data-align="left"';
-                                            wrapAlign = 'data-align="left"';
-                                        }
-                                    } else if (project.id === 'chapel') {
-                                        if (idx === 2) {
-                                            // 4-3: left align
-                                            imgAttrs = 'data-align="left"';
-                                            wrapAlign = 'data-align="left"';
-                                        }
-                                        if (idx === 4) {
-                                            // 4-5: left align
-                                            imgAttrs = 'data-align="left"';
-                                            wrapAlign = 'data-align="left"';
-                                        }
-                                        if (idx === 5) {
-                                            // 4-6: right align
-                                            imgAttrs = 'data-align="right"';
-                                            wrapAlign = 'data-align="right"';
-                                        }
-                                    } else if (project.id === 'unbannable-art-piece') {
+                                    if (project.id === 'unbannable-art-piece') {
                                         if (idx === 1) {
                                             imgAttrs = 'data-align="right"';
                                             wrapAlign = 'data-align="right"';
@@ -2624,31 +2423,7 @@
                                             wrapAlign = 'data-align="right"';
                                         }
                                         if (idx === 6) {
-                                            imgAttrs = 'data-align="left"';
-                                            wrapAlign = 'data-align="left"';
-                                        }
-                                        if (idx === 7) {
-                                            // 8-8: right align
-                                            imgAttrs = 'data-align="right"';
-                                            wrapAlign = 'data-align="right"';
-                                        }
-                                        if (idx === 8) {
-                                            // 8-9: right align
-                                            imgAttrs = 'data-align="right"';
-                                            wrapAlign = 'data-align="right"';
-                                        }
-                                        if (idx === 9) {
-                                            // 8-10: right align
-                                            imgAttrs = 'data-align="right"';
-                                            wrapAlign = 'data-align="right"';
-                                        }
-                                        if (idx === 10) {
-                                            // 8-11: left align
-                                            imgAttrs = 'data-align="left"';
-                                            wrapAlign = 'data-align="left"';
-                                        }
-                                        if (idx === 11) {
-                                            // 8-12: left align
+                                            wrapAttrs = 'data-overlap-large';
                                             imgAttrs = 'data-align="left"';
                                             wrapAlign = 'data-align="left"';
                                         }
@@ -2667,49 +2442,9 @@
                                             wrapAlign = 'data-align="left"';
                                         }
                                     } else if (project.id === 'korea-post-vip-lounge') {
-                                        if (idx === 1) {
-                                            // 6-2: left align
+                                        if (idx === 14) {
                                             imgAttrs = 'data-align="left"';
                                             wrapAlign = 'data-align="left"';
-                                        }
-                                        if (idx === 4) {
-                                            // 6-5: left align
-                                            imgAttrs = 'data-align="left"';
-                                            wrapAlign = 'data-align="left"';
-                                        }
-                                        if (idx === 5) {
-                                            // 6-6: right align
-                                            imgAttrs = 'data-align="right"';
-                                            wrapAlign = 'data-align="right"';
-                                        }
-                                        if (idx === 6) {
-                                            // 6-7: right align
-                                            imgAttrs = 'data-align="right"';
-                                            wrapAlign = 'data-align="right"';
-                                        }
-                                        if (idx === 7) {
-                                            // 6-8: left align
-                                            imgAttrs = 'data-align="left"';
-                                            wrapAlign = 'data-align="left"';
-                                        }
-                                        if (idx === 9) {
-                                            // 6-11: center align
-                                            wrapAlign = '';  // No left/right alignment = centered by default
-                                        }
-                                        if (idx === 10) {
-                                            // 6-12: left align
-                                            imgAttrs = 'data-align="left"';
-                                            wrapAlign = 'data-align="left"';
-                                        }
-                                        if (idx === 12) {
-                                            // 6-14: right align
-                                            imgAttrs = 'data-align="right"';
-                                            wrapAlign = 'data-align="right"';
-                                        }
-                                        if (idx === 13) {
-                                            // 6-15: right align
-                                            imgAttrs = 'data-align="right"';
-                                            wrapAlign = 'data-align="right"';
                                         }
                                     } else if (project.id === 'place-1-3-1-1-company') {
                                         if (idx === 1) {
@@ -2739,14 +2474,6 @@
                                             imgAttrs = 'data-align="left"';
                                             wrapAlign = 'data-align="left"';
                                         }
-                                        if (idx === 12) {
-                                            // 3-16: center align
-                                            wrapAlign = '';  // No left/right alignment = centered by default
-                                        }
-                                        if (idx === 14) {
-                                            imgAttrs = 'data-align="right"';
-                                            wrapAlign = 'data-align="right"';
-                                        }
                                         if (idx === 15) {
                                             imgAttrs = 'data-align="right"';
                                             wrapAlign = 'data-align="right"';
@@ -2772,19 +2499,10 @@
                                             wrapAlign = 'data-align="right"';
                                         }
                                         if (idx === 6) {
-                                            // 1-7: right align
-                                            imgAttrs = 'data-align="right"';
-                                            wrapAlign = 'data-align="right"';
-                                        }
-                                        if (idx === 7) {
                                             imgAttrs = 'data-align="left"';
                                             wrapAlign = 'data-align="left"';
                                         }
-                                        if (idx === 13) {
-                                            imgAttrs = 'data-align="right"';
-                                            wrapAlign = 'data-align="right"';
-                                        }
-                                        if (idx === 14) {
+                                        if (idx === 7) {
                                             imgAttrs = 'data-align="left"';
                                             wrapAlign = 'data-align="left"';
                                         }
@@ -2808,15 +2526,7 @@
                                         'sagittal-plane-of-a-chair'
                                     ];
                                     const projectNum = projectOrder.indexOf(project.id) + 1;
-                                    
-                                    // Special handling for korea-post-vip-lounge: 9.jpg was deleted, so adjust numbering
-                                    let imageNumber = idx + 1;
-                                    if (project.id === 'korea-post-vip-lounge' && idx >= 8) {
-                                        // idx 8 = 10.jpg (6-10), idx 9 = 11.png (6-11), etc.
-                                        imageNumber = idx + 2; // Skip 9
-                                    }
-                                    
-                                    const imageLabel = `${projectNum}-${imageNumber}`;
+                                    const imageLabel = `${projectNum}-${idx + 1}`;
                                     
                                     // Use eager loading for all images to prevent layout issues
                                     const loadingStrategy = 'eager';
@@ -2838,8 +2548,8 @@
                                         `;
                                     }
                                     return `
-                                    <div class="image-wrap" ${wrapAttrsCustom || wrapAttrs} style="cursor: default;">
-                                        <div class="image-container ${idx === 0 && project.id !== 'sagittal-plane-of-a-chair' ? 'hero-container' : ''}">
+                                    <div class="image-wrap" ${wrapAttrsCustom || wrapAttrs} style="cursor: default; ${project.id === 'one-life-welfare-community-center' && idx === 1 ? 'overflow: hidden;' : ''}">
+                                        <div class="image-container ${idx === 0 && project.id !== 'sagittal-plane-of-a-chair' ? 'hero-container' : ''}" style="${project.id === 'one-life-welfare-community-center' && idx === 1 ? 'overflow: hidden; width: 100%; height: 100%;' : ''}">
                                             <img 
                                                 src="${url}" 
                                                 alt="${project.title} ${idx}"

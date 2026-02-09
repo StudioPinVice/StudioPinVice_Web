@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>StudioPinVice Portfolio</title>
+  <!-- Pretendard 및 50가지 구글 폰트 CDN 링크 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/pretendard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Nanum+Gothic:wght@700&family=Oswald:wght@700&family=Montserrat:wght@700&family=Pacifico&family=Orbitron:wght@700&family=Russo+One&family=Concert+One&family=Indie+Flower&family=Rubik:wght@700&family=Yatra+One&family=Luckiest+Guy&family=Anton&family=Quicksand:wght@700&family=Jua&family=Do+Hyeon&family=Gothic+A1:wght@700&family=Lobster&family=Bebas+Neue&family=Dongle:wght@700&family=Poiret+One&family=Hind:wght@700&family=Arvo:wght@700&family=Patua+One&family=Archivo+Black&family=Fredoka+One&family=Righteous&family=Staatliches&family=Press+Start+2P&family=Titillium+Web:wght@700&family=Kanit:wght@700&family=Source+Code+Pro:wght@700&family=Kalam:wght@700&family=Exo:wght@700&family=Bungee&family=Special+Elite&family=Unica+One&family=Shadows+Into+Light&family=Courgette&family=Audiowide&family=Black+Han+Sans&family=Gugi&family=Permanent+Marker&family=Baloo+2:wght@700&family=VT323&family=Rajdhani:wght@700&family=Coiny&family=Changa:wght@700&family=Secular+One&display=swap" rel="stylesheet">
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      font-family: 'Pretendard', Arial, sans-serif;
+    }
+    .center-text {
+      text-align: center;
+      font-size: 2em;
+      font-weight: bold;
+      color: #222;
+    }
+    .star {
+      display: inline-block;
+      transition: font-family 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <div class="center-text">
+    The Portfolio Page of StudioPinVice<span class="star">*</span> is Under Construction
+  </div>
+  <script>
+    // 50가지 폰트 리스트
+    const fonts = [
+      'Pretendard', 'Roboto', 'Nanum Gothic', 'Oswald', 'Montserrat',
+      'Pacifico', 'Orbitron', 'Russo One', 'Concert One', 'Indie Flower',
+      'Rubik', 'Yatra One', 'Luckiest Guy', 'Anton', 'Quicksand',
+      'Jua', 'Do Hyeon', 'Gothic A1', 'Lobster', 'Bebas Neue',
+      'Dongle', 'Poiret One', 'Hind', 'Arvo', 'Patua One',
+      'Archivo Black', 'Fredoka One', 'Righteous', 'Staatliches', 'Press Start 2P',
+      'Titillium Web', 'Kanit', 'Source Code Pro', 'Kalam', 'Exo',
+      'Bungee', 'Special Elite', 'Unica One', 'Shadows Into Light', 'Courgette',
+      'Audiowide', 'Black Han Sans', 'Gugi', 'Permanent Marker', 'Baloo 2',
+      'VT323', 'Rajdhani', 'Coiny', 'Changa', 'Secular One'
+    ];
+    let idx = 0;
+    const star = document.querySelector('.star');
+    setInterval(() => {
+      star.style.fontFamily = `'${fonts[idx % fonts.length]}', Arial, sans-serif`;
+      idx++;
+    }, 500);
+  </script>
+</body>
+</html>

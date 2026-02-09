@@ -1,57 +1,2896 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>StudioPinVice Portfolio</title>
-  <!-- Pretendard 및 50가지 구글 폰트 CDN 링크 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/pretendard.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Nanum+Gothic:wght@700&family=Oswald:wght@700&family=Montserrat:wght@700&family=Pacifico&family=Orbitron:wght@700&family=Russo+One&family=Concert+One&family=Indie+Flower&family=Rubik:wght@700&family=Yatra+One&family=Luckiest+Guy&family=Anton&family=Quicksand:wght@700&family=Jua&family=Do+Hyeon&family=Gothic+A1:wght@700&family=Lobster&family=Bebas+Neue&family=Dongle:wght@700&family=Poiret+One&family=Hind:wght@700&family=Arvo:wght@700&family=Patua+One&family=Archivo+Black&family=Fredoka+One&family=Righteous&family=Staatliches&family=Press+Start+2P&family=Titillium+Web:wght@700&family=Kanit:wght@700&family=Source+Code+Pro:wght@700&family=Kalam:wght@700&family=Exo:wght@700&family=Bungee&family=Special+Elite&family=Unica+One&family=Shadows+Into+Light&family=Courgette&family=Audiowide&family=Black+Han+Sans&family=Gugi&family=Permanent+Marker&family=Baloo+2:wght@700&family=VT323&family=Rajdhani:wght@700&family=Coiny&family=Changa:wght@700&family=Secular+One&display=swap" rel="stylesheet">
-  <style>
-    body {
-      height: 100vh;
-      margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #fff;
-      font-family: 'Pretendard', Arial, sans-serif;
-    }
-    .center-text {
-      text-align: center;
-      font-size: 2em;
-      font-weight: bold;
-      color: #222;
-    }
-    .star {
-      display: inline-block;
-      transition: font-family 0.3s;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>StudioPinVice* Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        :root {
+            --edge-gap: 13px; /* spacing equal to screen border */
+        }
+        body {
+            font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: white;
+            font-weight: 500;
+            margin: 0;
+            padding: 0;
+            letter-spacing: -0.01em;
+        }
+            :root {
+                --edge-gap: 13px; /* spacing equal to screen border */
+                --base-tracking: 0em; /* reference image uses neutral tracking */
+            }
+            body {
+                font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                background-color: white;
+                font-weight: 500;
+                margin: 0;
+                padding: 0;
+                letter-spacing: var(--base-tracking);
+            }
+        
+        h1, h2, h3, h4, h5, h6, p, span, button, li, a {
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        /* Apply the same edge gap to the app root padding, but keep right edge flush with sidebar */
+        #root {
+            padding-top: var(--edge-gap);
+            padding-left: var(--edge-gap);
+            padding-bottom: var(--edge-gap);
+            padding-right: 0; /* allow images to reach the sidebar */
+        }
+
+        /* Images container uses the same gap as the screen edge */
+        .images-column {
+            display: flex;
+            flex-direction: column;
+            /* Fill the available width of the main content so images sit flush against the sidebar */
+            width: 100%;
+            gap: var(--edge-gap);
+            /* border: 2px solid red; */
+            box-sizing: border-box;
+        }
+
+        .images-column .image-wrap {
+            width: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            height: calc(100vh - var(--edge-gap));
+            padding: 0;
+            margin-bottom: 12vh;
+            overflow: visible;
+            pointer-events: none;
+        }
+        
+        .images-column .image-wrap img {
+                                    /* 5-3: 이미지 칸(gap) 좌측 빨간선에 딱 붙게 */
+                                    .images-column > .image-wrap[data-align="left"]:first-child {
+                                        margin-left: calc(-1 * var(--edge-gap)) !important;
+                                    }
+                            /* Force 5-3 (one-life-welfare-community-center idx 2) to be flush with left border */
+                            .images-column .image-wrap[data-align="left"] {
+                                position: relative !important;
+                                left: 0 !important;
+                                margin-left: 0 !important;
+                                padding-left: 0 !important;
+                            }
+                            .images-column .image-wrap[data-align="left"] .image-container {
+                                position: relative !important;
+                                left: 0 !important;
+                                margin-left: 0 !important;
+                                padding-left: 0 !important;
+                            }
+                            .images-column .image-wrap[data-align="left"] img {
+                                position: relative !important;
+                                left: 0 !important;
+                                margin-left: 0 !important;
+                                padding-left: 0 !important;
+                                display: block !important;
+                            }
+                    /* Ensure 5-3 (one-life-welfare-community-center idx 2) is flush left with column */
+                    .images-column .image-wrap[data-align="left"] {
+                        padding-left: 0 !important;
+                        margin-left: 0 !important;
+                    }
+                    .images-column .image-wrap[data-align="left"] .image-container {
+                        margin-left: 0 !important;
+                        padding-left: 0 !important;
+                    }
+                    .images-column .image-wrap[data-align="left"] img {
+                        margin-left: 0 !important;
+                        padding-left: 0 !important;
+                        left: 0 !important;
+                    }
+            max-height: 100%;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            pointer-events: auto; /* enable clicks only on images */
+        }
+
+        /* Pre-apply alignment for specific images to avoid layout shift */
+        img[data-align="right"] {
+            margin: 0 0 0 auto !important;
+        }
+
+        img[data-align="left"] {
+            margin: 0 auto 0 0 !important;
+        }
+
+        .image-wrap[data-overlap] {
+            margin-top: -40vh;
+        }
+
+        .image-wrap[data-overlap-large] {
+            margin-top: -50vh;
+        }
+        
+        /* Pre-apply alignment via justify-content on wrap */
+        .image-wrap[data-align="right"] {
+            justify-content: flex-end !important;
+        }
+        
+        .image-wrap[data-align="left"] {
+            justify-content: flex-start !important;
+        }
+        
+        /* 1-5 design lab specific styling */
+        .image-wrap[data-design-lab-2] {
+            justify-content: flex-start !important;
+            padding-left: 0 !important;
+        }
+        
+        .image-wrap[data-design-lab-2] .image-container {
+            margin-left: 0 !important;
+            margin-right: auto !important;
+        }
+        
+        .image-wrap[data-design-lab-2] img {
+            margin-left: 0 !important;
+            margin-right: auto !important;
+        }
+        
+        .image-wrap[data-design-lab-3] {
+            align-items: flex-end !important;
+            padding-bottom: 0 !important;
+        }
+        
+        .image-wrap[data-design-lab-3] .image-container {
+            align-self: flex-end !important;
+            margin-bottom: 0 !important;
+            display: flex !important;
+            align-items: flex-end !important;
+        }
+        
+        .image-wrap[data-design-lab-3] img {
+            margin-bottom: 0 !important;
+            align-self: flex-end !important;
+        }
+        
+        /* 1-5 design lab image 4 - align left edge with image 3's scaled left edge */
+        .image-wrap[data-design-lab-4] {
+            display: flex !important;
+            justify-content: flex-start !important;
+        }
+        
+        .image-wrap[data-design-lab-4] .image-container {
+            display: block !important;
+        }
+        
+        .image-wrap[data-design-lab-4] img {
+            display: block !important;
+        }
+
+        /* Image index number for editing reference */
+        .image-container {
+            position: relative;
+            display: inline-block;
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .image-container img {
+            display: block;
+        }
+        
+        .image-index {
+            display: none !important;
+        }
+
+        /* Hero (first) image should cover and be cropped top/bottom equally */
+        .hero-img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            object-position: center center !important;
+            display: block;
+        }
+        
+        /* Hero image container should fill the wrap */
+        .image-container.hero-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Sidebar typography adjustments to match reference layout */
+        .menu-item {
+            font-size: 0.7vw !important;
+            letter-spacing: -0.01em;
+            line-height: 1.3 !important;
+        }
+        .project-item {
+            font-size: 0.7vw !important;
+            letter-spacing: -0.01em;
+            line-height: 1.3 !important;
+        }
+            .menu-item {
+                font-size: 0.7vw !important;
+                letter-spacing: -0.01em;
+                line-height: 1.3 !important;
+                font-weight: 500 !important;
+            }
+            .project-item {
+                font-size: 0.7vw;
+                letter-spacing: -0.01em;
+                line-height: 1.3 !important;
+                margin-bottom: 0;
+                display: block;
+                font-weight: 500 !important;
+            }
+
+        /* Use Pretendard Medium as the default font and make non-bold the default
+           Preserve explicit weights via utility classes (.font-bold, .font-medium) */
+        body, h1, h2, h3, h4, h5, h6, p, span, button, li, a, #menu-list button, #project-list button, #project-details, nav, aside, header {
+            font-family: "Pretendard", "Pretendard Variable", -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif !important;
+            font-weight: 500 !important; /* Pretendard Medium */
+            font-size: 0.7vw !important;
+            line-height: 1.3 !important;
+        }
+
+        /* Preserve explicit Tailwind utility weights where used */
+        .font-bold { font-weight: 700 !important; }
+        .font-medium { font-weight: 600 !important; }
+
+        /* Make main content smooth scrolling without auto-snap */
+        #main-content {
+            /* scroll-snap disabled - only snap on click */
+            -webkit-overflow-scrolling: touch;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Very thin scrollbars: target ~1/10 of a typical default */
+        :root { --thin-scrollbar: 3px; }
+
+        /* WebKit browsers (Chrome, Safari) */
+        ::-webkit-scrollbar { width: var(--thin-scrollbar); height: var(--thin-scrollbar); }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.35); border-radius: 999px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.55); }
+
+        /* Firefox fallback */
+        * { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.35) transparent; }
+
+        /* Specific alignment gutter for text elements in sidebar */
+        .sidebar-content-gutter {
+            padding-left: 0;
+        }
+        /* Ensure sidebar's right padding matches the screen edge gap so text aligns flush with hero image */
+        #sidebar {
+            padding-right: 0 !important;
+        }
+
+        /* PPT-style layout override (force exact 75/25 split, no gap) */
+        /* Apply to the top-level flex container inside #root */
+        #root > .flex {
+            display: flex !important;
+            justify-content: flex-start !important; /* remove space-between behavior */
+            gap: 0px !important; /* remove gaps between main and sidebar */
+        }
+
+        /* Image area / main content: grow to fill available space */
+        #main-content {
+            flex: 1 1 auto !important;
+            width: auto !important;
+            max-width: none !important;
+            box-sizing: border-box;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar: keep original position and size */
+        #sidebar {
+            flex: 0 0 auto !important;
+            box-sizing: border-box;
+            padding-left: var(--edge-gap) !important; /* match white border thickness */
+            padding-right: var(--edge-gap) !important; /* add right padding to match white border */
+        }
+        /* Metadata inline label:value styling */
+        .meta-item { margin-bottom: 0; }
+        /* Use a single container gap so spacing between all meta items is uniform */
+        .meta-list { display: flex; flex-direction: column; gap: 16px; }
+        /* Place multiple metadata items on a single row when needed */
+        .meta-row { display: flex; gap: 16px; align-items: baseline; }
+        .meta-item { display: flex; gap: 4px; align-items: flex-start; }
+        .meta-label { color: #000; flex-shrink: 0; }
+        .meta-value { color: #000; flex: 1; word-wrap: break-word; }
+        /* Typographic size rules - responsive viewport units */
+        /* Navigation category buttons (WORK / PRESS / CONTACT) */
+        #menu-list button, .menu-item { font-size: 14px !important; font-weight: 500 !important; }
+        /* Project list items */
+        #project-list button, .project-item { font-size: 14px !important; }
+        /* Active project title in details */
+        #project-details h2 { font-size: 14px !important; font-weight: 500 !important; line-height: 1.0 !important; }
+        /* Project descriptions (Korean + English) */
+        #project-details .space-y-4 p { font-size: 14px !important; color: #000 !important; line-height: 1.3 !important; }
+        /* Project metadata (프로젝트 정보) */
+        #project-details .meta-item, #project-details .meta-label, #project-details .meta-value {
+            font-size: 14px !important;
+            color: #000 !important;
+            line-height: 1.3 !important;
+        }
+        
+        .active-menu {
+            opacity: 1;
+        }
+        .active-menu:hover {
+            opacity: 1 !important;
+        }
+        /* Keep inactive-looking buttons visually transparent */
+        .inactive-menu {
+            opacity: 0.5;
+        }
+        .inactive-menu:hover {
+            opacity: 1 !important;
+        }
+        .active-project {
+            opacity: 1;
+        }
+        .active-project:hover {
+            opacity: 1 !important;
+        }
+        .inactive-project {
+            opacity: 0.5;
+        }
+        .inactive-project:hover {
+            opacity: 1 !important;
+        }
+        
+        /* Ensure hidden class works properly */
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Make contact-content flex when visible */
+        #contact-content:not(.hidden) {
+            display: flex !important;
+        }
+
+        /* Desktop menu button styles */
+        .menu-item {
+            font-size: 0.7vw !important;
+            line-height: 1.3 !important;
+        }
+
+        /* Logo button opacity */
+        #logo-btn {
+            opacity: 1;
+        }
+        #logo-btn:active {
+            opacity: 1 !important;
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 768px) {
+            /* Mobile project title - fixed below header */
+            #mobile-project-title {
+                position: fixed !important;
+                top: 70px !important;
+                left: 0 !important;
+                right: 0 !important;
+                padding: 0px 15px !important;
+                background: white !important;
+                z-index: 99 !important;
+                font-size: 4vw !important;
+                font-weight: 500 !important;
+                line-height: 1.3 !important;
+                cursor: pointer !important;
+            }
+
+            /* Mobile project dropdown list */
+            #mobile-project-dropdown {
+                position: fixed !important;
+                top: 67px !important;
+                left: 0 !important;
+                right: 0 !important;
+                background: white !important;
+                z-index: 98 !important;
+                max-height: 0 !important;
+                overflow: hidden !important;
+                transition: max-height 0.3s ease !important;
+            }
+
+            #mobile-project-dropdown.open {
+                max-height: 50vh !important;
+                overflow-y: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+
+            #mobile-project-dropdown button {
+                width: 100% !important;
+                text-align: left !important;
+                padding: 3px 15px !important;
+                font-size: 4vw !important;
+                border: none !important;
+                background: white !important;
+                cursor: pointer !important;
+                transition: background 0.2s ease !important;
+            }
+
+            #mobile-project-dropdown button.inactive {
+                opacity: 0.4 !important;
+            }
+
+            #mobile-project-dropdown button:hover,
+            #mobile-project-dropdown button:active {
+                background: #f5f5f5 !important;
+            }
+
+            /* Mobile project list dropdown (for active project screen) */
+            #mobile-project-list-dropdown {
+                position: fixed !important;
+                top: 90px !important;
+                left: 0 !important;
+                right: 0 !important;
+                background: white !important;
+                z-index: 98 !important;
+                max-height: 0 !important;
+                overflow: hidden !important;
+                transition: max-height 0.3s ease !important;
+            }
+
+            #mobile-project-list-dropdown.open {
+                max-height: 50vh !important;
+                overflow-y: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+
+            #mobile-project-list-dropdown button {
+                width: 100% !important;
+                text-align: left !important;
+                padding: 3px 15px !important;
+                font-size: 4vw !important;
+                border: none !important;
+                background: white !important;
+                cursor: pointer !important;
+                transition: background 0.2s ease !important;
+            }
+
+            #mobile-project-list-dropdown button.inactive {
+                opacity: 0.4 !important;
+            }
+
+            #mobile-project-list-dropdown button:hover,
+            #mobile-project-list-dropdown button:active {
+                background: #f5f5f5 !important;
+            }
+
+            /* Mobile project list dropdown (for active project screen) */
+            #mobile-project-list-dropdown {
+                position: fixed !important;
+                top: 90px !important;
+                left: 0 !important;
+                right: 0 !important;
+                background: white !important;
+                z-index: 98 !important;
+                max-height: 0 !important;
+                overflow: hidden !important;
+                transition: max-height 0.3s ease !important;
+            }
+
+            #mobile-project-list-dropdown.open {
+                max-height: 50vh !important;
+                overflow-y: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+
+            #mobile-project-list-dropdown button {
+                width: 100% !important;
+                text-align: left !important;
+                padding: 3px 15px !important;
+                font-size: 4vw !important;
+                border: none !important;
+                background: white !important;
+                cursor: pointer !important;
+                transition: background 0.2s ease !important;
+            }
+
+            #mobile-project-list-dropdown button.inactive {
+                opacity: 0.4 !important;
+            }
+
+            #mobile-project-list-dropdown button:hover,
+            #mobile-project-list-dropdown button:active {
+                background: #f5f5f5 !important;
+            }
+
+            /* Adjust main content margin */
+            #main-content {
+                margin-top: 90px !important;
+                overflow-x: hidden !important;
+                max-width: 100vw !important;
+            }
+
+            /* Remove overflow-hidden from body and root for scrolling */
+            body {
+                overflow: visible !important;
+                overflow-y: auto !important;
+                height: auto !important;
+            }
+
+            /* Reset root padding for mobile */
+            #root {
+                padding: 0 !important;
+                overflow: visible !important;
+                height: auto !important;
+                min-height: 100vh !important;
+            }
+
+            /* Container also needs overflow reset */
+            #root > .flex {
+                overflow: visible !important;
+                height: auto !important;
+                min-height: 100vh !important;
+            }
+
+            /* Stack layout vertically */
+            #root > .flex {
+                flex-direction: column !important;
+                height: auto !important;
+            }
+
+            /* Sidebar becomes top header */
+            #sidebar {
+                width: 100% !important;
+                min-width: 100% !important;
+                height: auto !important;
+                max-height: none !important;
+                padding: 10px !important;
+                border-left: none !important;
+                border-bottom: none !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                z-index: 100;
+                background: white;
+                margin: 0 !important;
+            }
+
+            /* Logo larger on mobile */
+            #logo-img {
+                height: 25px !important;
+                width: auto !important;
+            }
+
+            /* Header spacing */
+            #sidebar header {
+                margin-bottom: 0 !important;
+                margin-top: 0 !important;
+            }
+
+            /* Navigation horizontal on mobile */
+            #sidebar nav {
+                margin-bottom: 0 !important;
+                margin-top: 10px !important;
+            }
+
+            #menu-list {
+                display: flex !important;
+                flex-direction: row !important;
+                gap: 30px !important;
+            }
+
+            /* Force menu button text size - override all Tailwind classes */
+            #menu-list button,
+            #menu-list li button,
+            #menu-list > li > button,
+            button.menu-item,
+            .menu-item,
+            #menu-list * {
+                font-size: 4vw !important;
+                line-height: 1.2 !important;
+                font-weight: 500 !important;
+            }
+
+            /* Work content on mobile */
+            #work-content {
+                display: none !important;
+            }
+
+            /* Hide press and contact content on mobile - force hide */
+            #press-content,
+            #contact-content,
+            #sidebar #press-content,
+            #sidebar #contact-content {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                height: 0 !important;
+                overflow: hidden !important;
+            }
+
+            /* Ensure hidden sections stay hidden on mobile */
+            #work-content.hidden,
+            #press-content.hidden,
+            #contact-content.hidden {
+                display: none !important;
+            }
+
+            /* Project list on mobile */
+            #project-list.hidden {
+                display: none !important;
+            }
+
+            #project-list:not(.hidden) {
+                display: block !important;
+            }
+
+            /* Force project list text size - override all classes */
+            #project-list button,
+            #project-list > button,
+            #project-list .project-item,
+            .project-item,
+            #project-list *,
+            #project-list button * {
+                font-size: 2.5vw !important;
+                padding: 3px 0 !important;
+                border-bottom: none !important;
+                display: block !important;
+                line-height: 1.3 !important;
+            }
+
+            /* Project details on mobile - hide from sidebar, will be shown in main content */
+            #project-details {
+                display: none !important;
+            }
+
+            /* Project details parent container on mobile - remove width restriction */
+            #project-details:parent,
+            #project-details,
+            div:has(> #project-details) {
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+
+            #project-details h2 {
+                font-size: 2.5vw !important;
+                max-width: 100% !important;
+                width: 100% !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                overflow: visible !important;
+            }
+
+            #project-details .space-y-4 p,
+            #project-details .meta-item,
+            #project-details .meta-label,
+            #project-details .meta-value {
+                font-size: 2.5vw !important;
+                max-width: 100% !important;
+                width: 100% !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                box-sizing: border-box !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                white-space: normal !important;
+                overflow: visible !important;
+            }
+
+            /* Main content full width on mobile */
+            #main-content {
+                width: 100% !important;
+                height: auto !important;
+                min-height: calc(100vh - 120px) !important;
+                margin-top: 120px !important;
+                overflow-y: visible !important;
+                overflow-x: visible !important;
+                -webkit-overflow-scrolling: touch !important;
+                padding: 15px !important;
+                padding-bottom: 50px !important;
+            }
+
+            /* Images column on mobile */
+            .images-column {
+                gap: 15px !important;
+                padding: 0 !important;
+                width: calc(100% + 30px) !important;
+                max-width: calc(100% + 30px) !important;
+                margin-left: -15px !important;
+                margin-right: -15px !important;
+                display: flex !important;
+                flex-direction: column !important;
+                overflow: visible !important;
+                position: relative !important;
+                z-index: 1 !important;
+            }
+
+            .images-column .image-wrap {
+                height: auto !important;
+                min-height: 40vh !important;
+                max-height: none !important;
+                margin-bottom: 10px !important;
+                display: block !important;
+                width: 100% !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                padding: 0 !important;
+            }
+
+            .images-column .image-wrap img {
+                max-width: 100% !important;
+                width: 100% !important;
+                height: auto !important;
+                object-fit: cover !important;
+                position: relative !important;
+                display: block !important;
+            }
+
+            /* Image index on mobile */
+            .image-index {
+                font-size: 2.5vw !important;
+                padding: 5px 10px !important;
+                bottom: 10px !important;
+                left: 10px !important;
+            }
+
+            /* Contact content on mobile */
+            #contact-content,
+            #contact-content *,
+            #press-content,
+            #press-content *,
+            #press-list,
+            #press-list li,
+            #press-list a {
+                font-size: 14px !important;
+                line-height: 1.3 !important;
+            }
+
+            #press-list li {
+                padding: 3px 0 !important;
+            }
+
+            /* Press content on mobile */
+            #press-content {
+                font-size: 14px !important;
+            }
+
+            #press-list .project-item {
+                font-size: 14px !important;
+            }
+
+            /* Project grid on mobile (if used) */
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                width: 100% !important;
+                height: auto !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+            }
+
+            /* Hide scrollbars on mobile */
+            .no-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+        /* Tablet responsive (768px - 1024px) */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            #sidebar {
+                width: 25% !important;
+                min-width: 200px !important;
+            }
+
+            .menu-item {
+                font-size: 12px !important;
+            }
+
+            .project-item {
+                font-size: 12px !important;
+            }
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
 </head>
-<body>
-  <div class="center-text">
-    The Portfolio Page of StudioPinVice<span class="star">*</span> is Under Construction
-  </div>
-  <script>
-    // 50가지 폰트 리스트
-    const fonts = [
-      'Pretendard', 'Roboto', 'Nanum Gothic', 'Oswald', 'Montserrat',
-      'Pacifico', 'Orbitron', 'Russo One', 'Concert One', 'Indie Flower',
-      'Rubik', 'Yatra One', 'Luckiest Guy', 'Anton', 'Quicksand',
-      'Jua', 'Do Hyeon', 'Gothic A1', 'Lobster', 'Bebas Neue',
-      'Dongle', 'Poiret One', 'Hind', 'Arvo', 'Patua One',
-      'Archivo Black', 'Fredoka One', 'Righteous', 'Staatliches', 'Press Start 2P',
-      'Titillium Web', 'Kanit', 'Source Code Pro', 'Kalam', 'Exo',
-      'Bungee', 'Special Elite', 'Unica One', 'Shadows Into Light', 'Courgette',
-      'Audiowide', 'Black Han Sans', 'Gugi', 'Permanent Marker', 'Baloo 2',
-      'VT323', 'Rajdhani', 'Coiny', 'Changa', 'Secular One'
-    ];
-    let idx = 0;
-    const star = document.querySelector('.star');
-    setInterval(() => {
-      star.style.fontFamily = `'${fonts[idx % fonts.length]}', Arial, sans-serif`;
-      idx++;
-    }, 500);
-  </script>
+<body class="bg-white text-black overflow-hidden">
+    <!-- Mobile Project Title (fixed, below header) -->
+    <div id="mobile-project-title" style="display: none;"></div>
+    <!-- Mobile Project Dropdown -->
+    <div id="mobile-project-dropdown" style="display: none;"></div>
+    <!-- Mobile Project List Dropdown (for active project screen) -->
+    <div id="mobile-project-list-dropdown" style="display: none;"></div>
+    
+    <div id="root" class="w-screen h-screen overflow-hidden" style="padding: 13px;">
+        <div class="flex w-full h-full bg-white overflow-hidden">
+            
+            <!-- MAIN CONTENT AREA -->
+            <main id="main-content" class="flex-1 relative overflow-y-auto overflow-x-hidden bg-white no-scrollbar">
+                <!-- Images will be injected here -->
+            </main>
+
+            <!-- SIDEBAR -->
+            <aside id="sidebar" class="w-[18%] h-full flex flex-col relative pt-0 border-l border-transparent select-none" style="min-width: 345px; padding-right: 16px; padding-bottom: 3px; overflow: hidden;">
+                
+                <!-- LOGO (Always at top, aligned with text) -->
+                <header class="z-10" style="display: flex; justify-content: flex-start; flex-shrink: 0; margin-bottom: 24px; margin-top: 5px;">
+                    <button id="logo-btn" class="hover:opacity-70 transition-opacity outline-none p-0 border-none bg-transparent cursor-pointer" style="display: block; margin: 0; margin-left: 0;">
+                        <img id="logo-img" alt="StudioPinVice" style="height: 1.5vw; width: auto; display: block; margin: 0; object-fit: contain;" />
+                    </button>
+                </header>
+
+                <!-- NAVIGATION -->
+                <nav style="flex-shrink: 0; margin-bottom: 24px; margin-top: 0;">
+                    <ul id="menu-list" class="space-y-0 p-0 m-0 list-none">
+                        <!-- WORK, PRESS, CONTACT injected here -->
+                    </ul>
+                </nav>
+
+                <!-- WORK CATEGORY CONTENT -->
+                <div id="work-content" class="flex-1 flex flex-col" style="min-height: 0; overflow: hidden;">
+                    <!-- PROJECT LIST - SCROLLABLE -->
+                    <div style="flex: 0 0 auto; overflow: visible; margin-bottom: 27px; margin-top: 0;" class="no-scrollbar">
+                        <ul id="project-list" class="space-y-0 p-0 m-0 list-none">
+                            <!-- Project titles injected here -->
+                        </ul>
+                    </div>
+
+                    <!-- PROJECT DETAILS - SCROLLABLE (separate from project list) -->
+                    <div id="project-details-container" style="flex: 0 0 auto; height: 300px; overflow-y: auto; overflow-x: hidden; max-width: 470px; margin-top: auto; display: flex; flex-direction: column; justify-content: flex-end;" class="no-scrollbar">
+                        <div id="project-details" style="padding-top: 0; padding-bottom: 0;">
+                            <!-- Active project metadata injected here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTACT CATEGORY CONTENT (Hidden by default) -->
+                <div id="contact-content" class="hidden font-medium mt-2" style="font-size: 14px !important; flex-direction: column; gap: 48px; line-height: 1.3 !important; font-weight: 500;">
+                    <div style="display: flex; flex-direction: column; gap: 7px; font-size: 14px !important; line-height: 1.3 !important;">
+                        <div class="flex" style="font-size: 14px !important; line-height: 1.3 !important;">
+                            <span style="font-size: 14px !important; line-height: 1.3 !important; font-weight: 500; letter-spacing: 0em;">+82 (0) 10 3124 8695</span>
+                        </div>
+                        <div class="flex" style="font-size: 14px !important; line-height: 1.3 !important;">
+                            <a href="mailto:info@studiopinvice.kr" class="hover:opacity-60 transition-opacity" style="font-size: 14px !important; line-height: 1.3 !important; font-weight: 500; text-decoration: none; color: #000;">info@studiopinvice.kr</a>
+                        </div>
+                        <div class="flex" style="font-size: 14px !important; line-height: 1.3 !important;">
+                            <a href="https://instagram.com/studiopinvice" target="_blank" rel="noreferrer" class="hover:opacity-60 transition-opacity" style="font-size: 14px !important; line-height: 1.3 !important; font-weight: 500; text-decoration: none; color: #000;">@studiopinvice</a>
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 2px; font-size: 14px !important; line-height: 1.3 !important;">
+                        <a href="https://www.google.com/maps/search/?api=1&query=StudioPinVice+172+Cheonggyecheon-ro+Jung-gu+Seoul" target="_blank" rel="noreferrer" class="hover:opacity-60 transition-opacity" style="text-decoration: none; color: #000; font-size: 14px !important; line-height: 1.3 !important; font-weight: 500;">
+                            <p class="m-0 p-0" style="font-size: 14px !important; line-height: 1.3 !important; font-weight: 500; letter-spacing: 0em;">5F 172 Cheonggyecheon-ro</p>
+                            <p class="m-0 p-0" style="font-size: 14px !important; line-height: 1.3 !important; font-weight: 500; letter-spacing: 0em;">Jung-gu Seoul KR</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PRESS CATEGORY CONTENT (Hidden by default) -->
+                <div id="press-content" class="hidden font-medium mt-2" style="font-size: 14px;">
+                    <ul id="press-list" class="space-y-0 p-0 m-0 list-none">
+                        <li class="leading-none">
+                            <a href="https://www.instagram.com/p/DKtt3tTtfAG/" target="_blank" rel="noopener noreferrer" class="project-item text-left w-full transition-all inactive-project font-medium p-0 border-none bg-transparent cursor-pointer hover:opacity-70" style="line-height: 1.3 !important; text-decoration: none;">
+                                [Industrial konzept] 1-5 Design Lab
+                            </a>
+                        </li>
+                        <li class="leading-none">
+                            <a href="https://leibal.com/interiors/1-5-design-lab/" target="_blank" rel="noopener noreferrer" class="project-item text-left w-full transition-all inactive-project font-medium p-0 border-none bg-transparent cursor-pointer hover:opacity-70" style="line-height: 1.3 !important; text-decoration: none;">
+                                [Leibal] 1-5 Design Lab
+                            </a>
+                        </li>
+                        <li class="leading-none">
+                            <a href="https://www.elle.com/jp/culture/travel/g43898562/seoul-hot-spot-now-230524/#:~:text=place1-3%20(%E3%83%97%E3%83%AC%E3%82%A4%E3%82%B9%20%E3%82%A4%E3%83%AB%E3%83%80%E3%82%B7%E3%82%B5%E3%83%A0)" target="_blank" rel="noopener noreferrer" class="project-item text-left w-full transition-all inactive-project font-medium p-0 border-none bg-transparent cursor-pointer hover:opacity-70" style="line-height: 1.3 !important; text-decoration: none;">
+                                [ELLE Japan] Place 1-3
+                            </a>
+                        </li>
+                        <li class="leading-none">
+                            <a href="https://www.newnormmag.com/place1-3/1-1company-studio-pin-vice" target="_blank" rel="noopener noreferrer" class="project-item text-left w-full transition-all inactive-project font-medium p-0 border-none bg-transparent cursor-pointer hover:opacity-70" style="line-height: 1.3 !important; text-decoration: none;">
+                                [New Norm] Place 1-3
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </aside>
+        </div>
+    </div>
+
+    <!-- ELLE Japan Modal removed, restored to link -->
+
+    <script>
+        // --- DATA ---
+        const PROJECTS = [
+            {
+                id: '1-5-design-lab',
+                title: '1-5 Design Lab Hannam',
+                type: 'Academy',
+                client: '1-5 Design Lab Hannam',
+                location: 'Hannam-daero 59, Yongsan-gu, Seoul',
+                floorArea: '332.84m² (100.68PY)',
+                involvement: 'Concept Design, Construction',
+                date: 'February 2025',
+                photography: 'Han Sunghoon',
+                descriptionKo: '1-5 디자인 랩은 유럽과 미국의 명문 예술학교 입시를 준비하는 디자인 아카데미로 입시생의 작업 과정이 작품처럼 보일 수 있도록, 갤러리와 워크샵을 결합한 형태로 디자인 했습니다.',
+                descriptionEn: 'The 1-5 Design Lab is a design academy preparing for entrance exams to prestigious art schools in Europe and the United States, and it is designed in a combination of galleries and workshops so that the process of the applicants looks like a work.',
+                imageUrl: 'https://raw.githubusercontent.com/ai-studio-pro/assets/main/studio-pinvice/05.jpg'
+            },
+            {
+                id: 'mma-photo-booth',
+                title: 'MMA Photo Booth',
+                type: 'Installation',
+                client: 'Kakao entertainment',
+                location: 'Inspire Arena, 127 Gonghang-munhwa-ro, Jung-gu, Incheon',
+                involvement: 'Concept Design, Production',
+                date: 'December 2024',
+                descriptionKo: '사일로랩과 협업하여 만든 본 모듈부스는 다회용으로 제작되었으며 행사에 맞게 여러 형태로 분해 조립이 가능합니다. 최초로 멜론뮤직 어워드의 아티스트 포토 부스로 사용 되었으며 이후 세미콘 코리아 도쿄 일렉트론 부스에 사용될 예정입니다.',
+                descriptionEn: 'Created in collaboration with Silo Lab, this module booth is multi-use and can be disassembled and assembled in several forms to suit the event. It was used as the artist photo booth at the Melon Music Awards for the first time, and will later be used for the Semicon Korea Tokyo Electron booth.',
+                imageUrl: ''
+            },
+            {
+                id: 'place-1-3-1-1-company',
+                title: 'Place 1-3 / 1-1 Company',
+                type: 'Retail Shop / Office',
+                client: 'Hyphen',
+                location: 'Palpan-gil 23, Jongno-gu, Seoul',
+                floorArea: '415.94㎡(125.28PY)',
+                involvement: 'Concept Design, Construction',
+                date: 'April 2025',
+                photography: 'Han Sunghoon',
+                descriptionKo: '주식회사 하이픈의 사옥을 디자인한 프로젝트로 사옥의 1층은 하이픈의 리테일 브랜드 Place1-3이 입점해 있습니다. 리테일 샵은 액자의 프레임을 컨셉으로 작업했습니다. 가구의 테두리와 안쪽에 그리드를 만들어 다량의 상품 진열 시에도 정돈된 분위기를 유지할 수 있습니다. 또한 중앙 선반을 도입해 스킵 플로어 구조의 단절을 보완하고 수직적 공간감을 확보했습니다.',
+                descriptionEn: 'It is a project that designed Hyphen\'s office building, and the first floor of the office building is home to Hyphen\'s retail brand Place 1-3. Retail Shop worked with the concept of framed frames. By creating grids on the edges and inside of furniture, you can maintain an organized atmosphere even when displaying large quantities of goods. It also introduced a center shelf to compensate for the disconnection of the skip floor structure and secure a sense of vertical space.',
+                imageUrl: ''
+            },
+            {
+                id: 'chapel',
+                title: 'Chapel of OneLifeWelfare',
+                type: 'Chapel',
+                client: 'One Life Welfare',
+                location: '1706 Singil-dong, Ansan-si, Gyeonggi-do',
+                involvement: 'Concept Design, Construction',
+                date: 'December 2025',
+                photography: 'Han Sunghoon',
+                descriptionKo: '한생명복지재단의 예배당 프로젝트입니다. 기독교적 상징과 모성을 모티브로 한 오브젝트를 배치하여 단체의 사회적 역할을 표현했습니다.',
+                descriptionEn: 'A chapel project for the One Life Welfare Foundation. Objects with Christian symbols and motherhood as motifs were placed to express the social role of the group.',
+                imageUrl: ''
+            },
+            {
+                id: 'one-life-welfare-community-center',
+                title: 'One Life Welfare Community Center',
+                type: 'Complex',
+                client: 'One Life Welfare',
+                location: '1706 Singil-dong, Ansan-si, Gyeonggi-do',
+                floorArea: '328.82㎡(99.47PY)',
+                involvement: 'Concept Design, Construction',
+                date: 'December 2025',
+                photography: 'Han Sunghoon',
+                descriptionKo: '한생명복지재단의 복합문화센터를 디자인 했습니다. 한생명복지재단은 기독교 기반의 기부재단으로 미혼모 보호와 지원을 주된 사업으로 진행하는 비영리 단체입니다. 중앙 홀은 기독교적 상징과 모성을 모티브로 한 오브젝트를 배치하여 단체의 사회적 역할을 표현했습니다. 이어서 홍해와 언덕을 메타포로 활용하여 작업한 예배당과 자연물을 단순화시켜 표현한 어린이 도서관을 작업했습니다.',
+                descriptionEn: 'We designed the Korea Life Welfare Foundation\'s Multicultural Center. The Korea Life Welfare Foundation is a Christian-based donation foundation that is a non-profit organization whose main business is to protect and support single mothers. The central hall expressed the social role of the group by placing objects with Christian symbols and motherhood as motifs. Worked on a chapel using the Red Sea and hills as metaphors and a children\'s library that simplified and expressed natural objects.',
+                imageUrl: ''
+            },
+            {
+                id: 'korea-post-vip-lounge',
+                title: 'Korea Post VIP Lounge',
+                type: 'Manual Design',
+                client: 'Mastercard / Korea Post',
+                signage: '1-1Company',
+                involvement: 'Concept Design, Basic Drawings',
+                date: 'August 2025',
+                descriptionKo: '우정사업본부 산하 우체국 예금의 VIP 라운지 메뉴얼 디자인을 진행했습니다. 기존의 우체국 예금의 브랜드 컬러인 노란색을 메이플 우드로 치환하여 고급스러운 무드로 재해석 했습니다. 또한 천정 몰딩을 우표의 테두리 형태로 고안하여 기존 우체국과의 시각적 연결성을 유지했습니다.',
+                descriptionEn: 'We conducted a VIP lounge manual design of post office deposits under the Post Office. Yellow, the brand color of the existing post office deposit, was replaced with maple wood to reinterpret it in a luxurious mood. Furthermore, the ceiling molding was designed in the form of a border of stamps to maintain visual connectivity with existing post offices.',
+                imageUrl: ''
+            },
+            {
+                id: 'unbannable-art-piece',
+                title: 'Unbannable Art Piece',
+                type: 'Installation',
+                client: 'Nike',
+                location: '322-39 Seongsu-dong 2-ga, Seongdong-gu, Seoul',
+                size: '3200×750×65',
+                involvement: 'Concept Design, Production',
+                date: 'January 2025',
+                descriptionKo: '텔레포트와 협업하여 UNBANNABLE CELEBRATION PARTY의 아트피스를 제작했습니다. 성수에서 열린 UNBANNABLE CELEBRATION PARTY 행사는 나이키 조던이 지난 40년간 선사해 온 영향력을 기념하는 파티로, 기념일이라는 경계적 순간을 강조하기 위해 메인 슬로건의 테두리가 조명에 의해 반사되는 디자인을 고안했습니다.',
+                descriptionEn: 'In collaboration with Teleport, an art piece was created for the UNBANNABLE CELEBRATION PARTY. The UNBANNABLE CELEBRATION PARTY event in Seongsu is a party that celebrates Nike Jordan\'s influence over the past 40 years, with the design featuring the rim of the main slogan reflected by lighting to highlight the iconic moment of the anniversary.',
+                imageUrl: ''
+            },
+            {
+                id: 'module-booth-2-0',
+                title: 'Module Booth 2.0',
+                type: 'Installation',
+                client: 'Silo Lab.',
+                involvement: 'Concept Design, Detailed Drawings',
+                date: 'November 2025',
+                descriptionKo: '본 모듈은 SM 엔터테인먼트의 월드투어용 포토부스를 목적으로 고안되어 항공 및 해상운송, 적재에 용이하고, 현장에서 전문인력 없이 조립이 가능하도록 고안되었습니다. 또한 모듈내부는 LED조명 삽입이 가능하며 여러 행사에 적용가능 하도록 다양한 형태로 조립될 수 있습니다.',
+                descriptionEn: 'This module is designed for the purpose of SM Entertainment\'s world tour photo booth and is designed to facilitate air and sea transportation and loading, and to be assembled without professionals in the field. The LED lighting can also be inserted inside the module and can be assembled in various forms to be applied to various events.',
+                imageUrl: ''
+            },
+            {
+                id: 'sagittal-plane-of-a-chair',
+                title: 'Sagittal Plane of a Chair',
+                type: 'Furniture',
+                material: 'Concrete, Stainless steel',
+                size: '320×430×1500',
+                involvement: 'Concept Design, Production',
+                date: 'October 2024',
+                descriptionKo: '단면의 조형성을 탐구하며 고안한 가구로 해부학적 시상면으로 자른 형태의 의자를 제작했습니다. 의자는 척추와 직접적으로 닿지 않습니다.',
+                descriptionEn: 'Exploring the formality of the cross-section, this furniture is a chair cut in the form of an anatomical sagittal plane. The chair does not directly touch the spine.',
+                imageUrl: ''
+            }
+        ];
+
+        const designLabImages = [
+            '../1.1-5/1-5Hannam00.jpg',
+            '../1.1-5/1-5Hannam19.jpg',
+            '../1.1-5/1-5Hannam21.jpg',
+            '../1.1-5/1-5Hannam18.jpg',
+            '../1.1-5/1-5Hannam15.jpg',
+            '../1.1-5/1-5Hannam14.jpg',
+            '../1.1-5/1-5Hannam11.jpg',
+            '../1.1-5/1-5Hannam9.jpg',
+            '../1.1-5/1-5Hannam4.jpg',
+            '../1.1-5/1-5Hannam1.jpg',
+            '../1.1-5/1-5Hannam20.jpg',
+            '../1.1-5/1-5Hannam8.jpg',
+            '../1.1-5/1-5Hannam10.jpg',
+            '../1.1-5/1-5Hannam13.jpg',
+            '../1.1-5/1-5Hannam2.jpg',
+            '../1.1-5/1-5Hannam22.jpg'
+        ];
+
+        const mmaImages = [
+            '../2.MMA/mma1.jpeg',
+            '../2.MMA/mma2.png',
+            '../2.MMA/mma6.jpeg',
+            '../2.MMA/mma7.jpeg',
+            '../2.MMA/mma9.jpeg',
+            '../2.MMA/mma10.jpg',
+            '../2.MMA/mma11.jpeg',
+            '../2.MMA/mma12.jpg',
+            '../2.MMA/mma13.jpeg',
+            '../2.MMA/mma14.jpeg',
+            '../2.MMA/mma15.jpeg',
+            '../2.MMA/mma16.jpeg',
+            '../2.MMA/mma17.png'
+        ];
+
+        const place13Images = [
+            '../3.Place1-3/1-3Place1.jpg',
+            '../3.Place1-3/1-3Place2.jpg',
+            '../3.Place1-3/1-3Place3.jpg',
+            '../3.Place1-3/1-3Place4.jpg',
+            '../3.Place1-3/1-3Place6.jpg',
+            '../3.Place1-3/1-3Place7.jpg',
+            '../3.Place1-3/1-3Place10.jpg',
+            '../3.Place1-3/1-3Place11.jpg',
+            '../3.Place1-3/1-3Place12.jpg',
+            '../3.Place1-3/1-3Place13.jpg',
+            '../3.Place1-3/1-3Place14.jpg',
+            '../3.Place1-3/1-3Place15.jpg',
+            '../3.Place1-3/1-3Place16.jpg',
+            '../3.Place1-3/1-3Place17.jpg',
+            '../3.Place1-3/1-3Place19.jpg',
+            '../3.Place1-3/1-3Place21.jpg',
+            '../3.Place1-3/1-3Place26.jpg',
+            '../3.Place1-3/1-3Place27.jpg',
+            '../3.Place1-3/1-3Place28.png',
+            '../3.Place1-3/1-3Place29.jpg',
+            '../3.Place1-3/1-3Place30.png',
+            '../3.Place1-3/1-3Place31.jpeg'
+        ];
+
+        const chapelImages = [
+            '../4.Chapel of OneLifeWelFare/chapel_1.jpg',
+            '../4.Chapel of OneLifeWelFare/chapel_2.jpg',
+            '../4.Chapel of OneLifeWelFare/chapel_3.jpg',
+            '../4.Chapel of OneLifeWelFare/chapel_4.jpg',
+            '../4.Chapel of OneLifeWelFare/chapel_5.jpg',
+            '../4.Chapel of OneLifeWelFare/chapel_6.jpg'
+        ];
+
+        const oneLifeWelfareImages = [
+            '../5.OneLifeWelFare/OneLife1.jpg',
+            '../5.OneLifeWelFare/OneLife2.jpg',
+            '../5.OneLifeWelFare/OneLife3.jpg',
+            '../5.OneLifeWelFare/OneLife4.jpg',
+            '../5.OneLifeWelFare/OneLife5.jpg',
+            '../5.OneLifeWelFare/OneLife6.jpg',
+            '../5.OneLifeWelFare/OneLife7.jpg',
+            '../5.OneLifeWelFare/OneLife8.jpg',
+            '../5.OneLifeWelFare/OneLife9.jpg',
+            '../5.OneLifeWelFare/OneLife10.jpg',
+            '../5.OneLifeWelFare/OneLife11.jpg',
+            '../5.OneLifeWelFare/OneLife12.jpg',
+            '../5.OneLifeWelFare/OneLife13.jpg',
+            '../5.OneLifeWelFare/OneLife14.jpg',
+            '../5.OneLifeWelFare/OneLife15.jpg',
+            '../5.OneLifeWelFare/OneLife16.jpg',
+            '../5.OneLifeWelFare/OneLife17.jpg',
+            '../5.OneLifeWelFare/OneLife18.jpg',
+            '../5.OneLifeWelFare/OneLife19.jpg',
+            '../5.OneLifeWelFare/OneLife20.jpg',
+            '../5.OneLifeWelFare/OneLife21.jpg',
+            '../5.OneLifeWelFare/OneLife22.jpg'
+        ];
+
+        const koreaPostImages = [
+            '../6.KoreaPost/1.png',
+            '../6.KoreaPost/2.png',
+            '../6.KoreaPost/3.jpg',
+            '../6.KoreaPost/4.jpg',
+            '../6.KoreaPost/5.png',
+            '../6.KoreaPost/6.png',
+            '../6.KoreaPost/7.png',
+            '../6.KoreaPost/8.png',
+            '../6.KoreaPost/10.jpg',
+            '../6.KoreaPost/11.png',
+            '../6.KoreaPost/12.png',
+            '../6.KoreaPost/13.png',
+            '../6.KoreaPost/14.jpg',
+            '../6.KoreaPost/15.png'
+        ];
+
+
+        const unbannableImages = [
+            '../7.Unbannable/Unbannable1.jpeg',
+            '../7.Unbannable/Unbannable3.jpeg',
+            '../7.Unbannable/Unbannable4.jpeg',
+            '../7.Unbannable/Unbannable5.jpg',
+            '../7.Unbannable/Unbannable2.png'
+        ];
+
+        const moduleBoothImages = [
+            '../8.ModuleBooth2.0/PB2.0_1.png',
+            '../8.ModuleBooth2.0/PB2.0_2.png',
+            '../8.ModuleBooth2.0/PB2.0_3.png',
+            '../8.ModuleBooth2.0/PB2.0_4.png',
+            '../8.ModuleBooth2.0/PB2.0_5.png',
+            '../8.ModuleBooth2.0/PB2.0_6.png',
+            '../8.ModuleBooth2.0/PB2.0_7.png',
+            '../8.ModuleBooth2.0/PB2.0_8.png',
+            '../8.ModuleBooth2.0/PB2.0_9.png',
+            '../8.ModuleBooth2.0/PB2.0_10.png',
+            '../8.ModuleBooth2.0/PB2.0_11.png',
+            '../8.ModuleBooth2.0/PB2.0_12.png'
+        ];
+
+        const sagittalImages = [
+            '../9.Sagittal/Sagittal1.jpeg',
+            '../9.Sagittal/Sagittal2.jpeg',
+            '../9.Sagittal/Sagittal3.jpeg',
+            '../9.Sagittal/Sagittal4.jpeg',
+            '../9.Sagittal/Sagittal5.jpg',
+            '../9.Sagittal/Sagittal6.jpg',
+            '../9.Sagittal/Sagittal7.jpg',
+            '../9.Sagittal/Sagittal8.jpg',
+            '../9.Sagittal/Sagittal9.jpg',
+            '../9.Sagittal/Sagittal10.jpg'
+        ];
+
+        const logoBase64 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMjAgNDAiIGZpbGw9ImJsYWNrIj48dGV4dCB4PSIyMTUiIHk9IjMwIiB0ZXh0LWFuY2hvcj0iZW5kIiBmb250LWZhbWlseT0iJ1ByZXRlbmRhcmQnLCAtQXBwbGUtc3lzdGVtLCBCbGlua01hY1N5c3RlbUZvbnQsICdTZWdvZSBVSScsIFJvYm90bywgJ0hlbHZldGljYSBOZXVlJywgQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSI4MDAiIGZvbnQtc2l6ZT0iMzAiIGxldHRlci1zcGFjaW5nPSItMC4wNWVtIj5TdHVkaW9QaW5WaWNlPC90ZXh0Pjwvc3ZnPg==";
+
+        // --- STATE ---
+        let currentCategory = null;
+        let activeProjectId = null;
+        let clickedProjectId = null; // track which project was clicked
+        let showHome = true; // when true, main content shows an empty home screen
+        let projectScrollPositions = {}; // store scroll position for each project
+
+        // --- DOM ELEMENTS ---
+        const mainContent = document.getElementById('main-content');
+        const menuList = document.getElementById('menu-list');
+        const projectList = document.getElementById('project-list');
+        const projectDetails = document.getElementById('project-details');
+        const logoBtn = document.getElementById('logo-btn');
+        const logoImg = document.getElementById('logo-img');
+        
+        const workSection = document.getElementById('work-content');
+        const pressSection = document.getElementById('press-content');
+        const contactSection = document.getElementById('contact-content');
+
+        // --- FUNCTIONS ---
+        
+        // Scroll to clicked image with smooth animation - center the image in viewport
+        window.scrollToImage = function(imgElement) {
+            // Disable on mobile
+            if (window.innerWidth <= 768) {
+                return;
+            }
+            
+            const viewportHeight = window.innerHeight;
+            const imgRect = imgElement.getBoundingClientRect();
+            const imgCenterY = imgRect.top + imgRect.height / 2;
+            const scrollOffset = imgCenterY - viewportHeight / 2;
+            
+            mainContent.scrollBy({ top: scrollOffset, behavior: 'smooth' });
+        };
+        
+        function init() {
+            logoImg.src = '../0.ETC/SPV_Logotype2.png';
+            renderMenu();
+            renderProjects();
+            updateUI();
+
+            // setup wheel paging
+            setupScrollSnapNavigation();
+
+            logoBtn.addEventListener('click', () => {
+                showHome = true;
+                currentCategory = null;
+                activeProjectId = null;
+                clickedProjectId = null;
+                
+                // Close and hide mobile dropdown
+                const mobileDropdown = document.getElementById('mobile-project-dropdown');
+                const mobileProjectListDropdown = document.getElementById('mobile-project-list-dropdown');
+                const mobileTitle = document.getElementById('mobile-project-title');
+                if (mobileDropdown) {
+                    mobileDropdown.classList.remove('open');
+                    mobileDropdown.style.display = 'none';
+                }
+                if (mobileProjectListDropdown) {
+                    mobileProjectListDropdown.classList.remove('open');
+                }
+                if (mobileTitle) {
+                    mobileTitle.style.display = 'none';
+                }
+                
+                renderMenu();
+                renderProjects();
+                updateUI();
+            });
+        }
+
+        function renderMenu() {
+            const categories = ['WORK', 'PRESS', 'CONTACT'];
+            const isMobile = window.innerWidth <= 768;
+            
+            menuList.innerHTML = categories.map(cat => `
+                <li class="leading-none">
+                    <button 
+                        onclick="${isMobile ? `toggleCategoryDropdown('${cat}')` : `setCategory('${cat}')`}"
+                        class="menu-item tracking-tighter transition-opacity hover:opacity-70 ${currentCategory === cat ? 'active-menu font-bold' : 'inactive-menu font-bold'} block w-full text-left p-0 border-none bg-transparent cursor-pointer"
+                    >
+                        ${cat}
+                    </button>
+                </li>
+            `).join('');
+        }
+
+        // Mobile: Toggle dropdown when menu button is clicked
+        window.toggleCategoryDropdown = function(cat) {
+            const mobileDropdown = document.getElementById('mobile-project-dropdown');
+            const mobileProjectListDropdown = document.getElementById('mobile-project-list-dropdown');
+            const mobileTitle = document.getElementById('mobile-project-title');
+            const wasOpen = mobileDropdown && mobileDropdown.classList.contains('open');
+            
+            // Check if we're in an active project screen
+            const inProjectScreen = activeProjectId !== null;
+            
+            // If in project screen and clicking WORK, use project list dropdown
+            if (inProjectScreen && cat === 'WORK') {
+                if (mobileProjectListDropdown) {
+                    mobileProjectListDropdown.classList.toggle('open');
+                }
+                return;
+            }
+            
+            // If clicking the same category, just toggle
+            if (currentCategory === cat) {
+                if (mobileDropdown) {
+                    mobileDropdown.classList.toggle('open');
+                }
+                return;
+            }
+            
+            // For different category: keep open if already open, just update content
+            currentCategory = cat;
+            showHome = false;
+            activeProjectId = null;
+            
+            // Close project list dropdown if it's open (when switching from project view to PRESS/CONTACT)
+            if (mobileProjectListDropdown && mobileProjectListDropdown.classList.contains('open')) {
+                mobileProjectListDropdown.classList.remove('open');
+            }
+            
+            // Hide mobile title (use menu button instead)
+            if (mobileTitle) {
+                mobileTitle.style.display = 'none';
+            }
+            
+            // Clear main content
+            mainContent.innerHTML = '';
+            
+            // Manage sidebar content visibility
+            if (cat === 'WORK') {
+                workSection.classList.remove('hidden');
+                pressSection.classList.add('hidden');
+                contactSection.classList.add('hidden');
+                const projectListEl = document.getElementById('project-list');
+                if (projectListEl) {
+                    projectListEl.classList.add('hidden');
+                }
+                
+                if (mobileDropdown) {
+                    mobileDropdown.style.display = 'block';
+                    // Reset dropdown position to below menu when no project is active
+                    mobileDropdown.style.top = '120px';
+                    mobileDropdown.style.paddingTop = '0px';
+                    mobileDropdown.innerHTML = PROJECTS.map(p => `
+                        <button data-project-id="${p.id}" class="inactive">
+                            ${p.title}
+                        </button>
+                    `).join('');
+                    
+                    const dropdownButtons = mobileDropdown.querySelectorAll('button[data-project-id]');
+                    dropdownButtons.forEach(btn => {
+                        const projectId = btn.getAttribute('data-project-id');
+                        btn.onclick = function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            mobileDropdown.classList.remove('open');
+                            setActiveProject(projectId);
+                        };
+                    });
+                }
+            } else if (cat === 'PRESS') {
+                workSection.classList.add('hidden');
+                pressSection.classList.add('hidden');
+                contactSection.classList.add('hidden');
+                
+                if (mobileDropdown) {
+                    mobileDropdown.style.display = 'block';
+                    const pressItems = [
+                        { title: '[Industrial konzept] 1-5 Design Lab', url: 'https://www.instagram.com/p/DKtt3tTtfAG/' },
+                        { title: '[Leibal] 1-5 Design Lab', url: 'https://leibal.com/interiors/1-5-design-lab/' },
+                        { title: '[ELLE Japan] Place 1-3', url: 'https://www.elle.com/jp/culture/travel/g43898562/seoul-hot-spot-now-230524/#:~:text=place1-3%20(%E3%83%97%E3%83%AC%E3%82%A4%E3%82%B9%20%E3%82%A4%E3%83%AB%E3%83%80%E3%82%B7%E3%82%B5%E3%83%A0)' },
+                        { title: '[New Norm] Place 1-3', url: 'https://www.newnormmag.com/place1-3/1-1company-studio-pin-vice' }
+                    ];
+                    
+                    mobileDropdown.innerHTML = pressItems.map(item => `
+                        <button onclick="window.open('${item.url}', '_blank', 'noopener,noreferrer')">
+                            ${item.title}
+                        </button>
+                    `).join('');
+                }
+            } else if (cat === 'CONTACT') {
+                workSection.classList.add('hidden');
+                pressSection.classList.add('hidden');
+                contactSection.classList.add('hidden');
+                
+                if (mobileDropdown) {
+                    mobileDropdown.style.display = 'block';
+                    const contactItems = [
+                        { title: '+82 (0) 10 3124 8695', url: 'tel:+821031248695' },
+                        { title: 'info@studiopinvice.kr', url: 'mailto:info@studiopinvice.kr' },
+                        { title: '@studiopinvice', url: 'https://instagram.com/studiopinvice' },
+                        { title: '5F 172 Cheonggyecheon-ro, Jung-gu Seoul KR', url: 'https://www.google.com/maps/search/?api=1&query=StudioPinVice+172+Cheonggyecheon-ro+Jung-gu+Seoul' }
+                    ];
+                    
+                    mobileDropdown.innerHTML = contactItems.map(item => `
+                        <button onclick="window.open('${item.url}', '_blank', 'noopener,noreferrer')">
+                            ${item.title}
+                        </button>
+                    `).join('');
+                }
+            }
+            
+            // Open dropdown with animation (only if it was closed)
+            if (mobileDropdown && !wasOpen) {
+                setTimeout(() => {
+                    mobileDropdown.classList.add('open');
+                }, 50);
+            }
+            
+            renderMenu();
+            renderProjects();
+            updateUI();
+        };
+
+        function renderProjects() {
+            projectList.innerHTML = PROJECTS.map(p => `
+                <li class="leading-none">
+                    <button 
+                        data-project-id="${p.id}"
+                        onmouseenter="hoverProject('${p.id}')"
+                        class="project-item text-left w-full transition-all ${activeProjectId === p.id ? 'active-project font-medium' : 'inactive-project font-medium'} p-0 border-none bg-transparent cursor-pointer"
+                        style="line-height: 1.3 !important;"
+                    >
+                        ${p.title}
+                    </button>
+                </li>
+            `).join('');
+            
+            // Add click/touch event listeners to all project buttons
+            const projectButtons = projectList.querySelectorAll('button[data-project-id]');
+            projectButtons.forEach(btn => {
+                const projectId = btn.getAttribute('data-project-id');
+                
+                // Add both click and touchstart for better mobile support
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    setActiveProject(projectId);
+                });
+                
+                btn.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    setActiveProject(projectId);
+                }, { passive: false });
+            });
+            
+            // Add mouseleave handler to project list container to restore clicked project
+            projectList.onmouseleave = function() {
+                if (clickedProjectId) {
+                    activeProjectId = clickedProjectId;
+                    const currentScroll = mainContent.scrollTop;
+                    updateUI();
+                    mainContent.scrollTop = currentScroll; // preserve scroll position
+                }
+            };
+        }
+
+        window.setCategory = function(cat) {
+            currentCategory = cat;
+            showHome = false;
+            if (cat === 'WORK') {
+                // Show only the project list; do not open any project images yet
+                activeProjectId = null;
+                workSection.classList.remove('hidden');
+                pressSection.classList.add('hidden');
+                contactSection.classList.add('hidden');
+                
+                // Show project list when WORK is clicked
+                const projectListEl = document.getElementById('project-list');
+                
+                // On mobile, show dropdown instead
+                if (window.innerWidth <= 768) {
+                    // Hide sidebar project list on mobile
+                    if (projectListEl) {
+                        projectListEl.classList.add('hidden');
+                    }
+                    
+                    const mobileTitle = document.getElementById('mobile-project-title');
+                    const mobileDropdown = document.getElementById('mobile-project-dropdown');
+                    
+                    // Clear main content
+                    mainContent.innerHTML = '';
+                    
+                    if (mobileTitle) {
+                        mobileTitle.textContent = 'WORK';
+                        mobileTitle.style.display = 'block';
+                        
+                        // Add click handler to toggle dropdown
+                        mobileTitle.onclick = function() {
+                            if (mobileDropdown) {
+                                mobileDropdown.classList.toggle('open');
+                            }
+                        };
+                        
+                        // Auto-open dropdown
+                        setTimeout(() => {
+                            if (mobileDropdown) {
+                                mobileDropdown.classList.add('open');
+                            }
+                        }, 100);
+                    }
+                    
+                    // Populate dropdown with all projects
+                    if (mobileDropdown) {
+                        mobileDropdown.style.display = 'block';
+                        mobileDropdown.innerHTML = PROJECTS.map(p => `
+                            <button data-project-id="${p.id}" class="inactive">
+                                ${p.title}
+                            </button>
+                        `).join('');
+                        
+                        // Add click handlers to dropdown items
+                        const dropdownButtons = mobileDropdown.querySelectorAll('button[data-project-id]');
+                        dropdownButtons.forEach(btn => {
+                            const projectId = btn.getAttribute('data-project-id');
+                            btn.onclick = function(e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                mobileDropdown.classList.remove('open');
+                                setActiveProject(projectId);
+                            };
+                        });
+                    }
+                } else {
+                    // Desktop: show project list
+                    if (projectListEl) {
+                        projectListEl.classList.remove('hidden');
+                    }
+                }
+            } else if (cat === 'PRESS') {
+                activeProjectId = null;
+                workSection.classList.add('hidden');
+                contactSection.classList.add('hidden');
+                
+                // On mobile, show press items in dropdown
+                if (window.innerWidth <= 768) {
+                    // Hide sidebar press content on mobile
+                    pressSection.classList.add('hidden');
+                    const mobileTitle = document.getElementById('mobile-project-title');
+                    const mobileDropdown = document.getElementById('mobile-project-dropdown');
+                    
+                    // Clear main content
+                    mainContent.innerHTML = '';
+                    
+                    if (mobileTitle) {
+                        mobileTitle.textContent = 'PRESS';
+                        mobileTitle.style.display = 'block';
+                        
+                        mobileTitle.onclick = function() {
+                            if (mobileDropdown) {
+                                mobileDropdown.classList.toggle('open');
+                            }
+                        };
+                        
+                        setTimeout(() => {
+                            if (mobileDropdown) {
+                                mobileDropdown.classList.add('open');
+                            }
+                        }, 100);
+                    }
+                    
+                    if (mobileDropdown) {
+                        mobileDropdown.style.display = 'block';
+                        const pressItems = [
+                            { title: '[Industrial konzept] 1-5 Design Lab', url: 'https://www.instagram.com/p/DKtt3tTtfAG/' },
+                            { title: '[Leibal] 1-5 Design Lab', url: 'https://leibal.com/interiors/1-5-design-lab/' },
+                            { title: '[ELLE Japan] Place 1-3', url: 'https://www.elle.com/jp/culture/travel/g43898562/seoul-hot-spot-now-230524/#:~:text=place1-3%20(%E3%83%97%E3%83%AC%E3%82%A4%E3%82%B9%20%E3%82%A4%E3%83%AB%E3%83%80%E3%82%B7%E3%82%B5%E3%83%A0)' },
+                            { title: '[New Norm] Place 1-3', url: 'https://www.newnormmag.com/place1-3/1-1company-studio-pin-vice' }
+                        ];
+                        
+                        mobileDropdown.innerHTML = pressItems.map(item => `
+                            <button class="inactive" onclick="window.open('${item.url}', '_blank', 'noopener,noreferrer')">
+                                ${item.title}
+                            </button>
+                        `).join('');
+                    }
+                } else {
+                    // Desktop: show press content
+                    pressSection.classList.remove('hidden');
+                }
+            } else if (cat === 'CONTACT') {
+                activeProjectId = null;
+                workSection.classList.add('hidden');
+                pressSection.classList.add('hidden');
+                
+                // On mobile, show contact info in dropdown
+                if (window.innerWidth <= 768) {
+                    // Hide sidebar contact content on mobile
+                    contactSection.classList.add('hidden');
+                    const mobileTitle = document.getElementById('mobile-project-title');
+                    const mobileDropdown = document.getElementById('mobile-project-dropdown');
+                    
+                    // Clear main content
+                    mainContent.innerHTML = '';
+                    
+                    if (mobileTitle) {
+                        mobileTitle.textContent = 'CONTACT';
+                        mobileTitle.style.display = 'block';
+                        
+                        mobileTitle.onclick = function() {
+                            if (mobileDropdown) {
+                                mobileDropdown.classList.toggle('open');
+                            }
+                        };
+                        
+                        setTimeout(() => {
+                            if (mobileDropdown) {
+                                mobileDropdown.classList.add('open');
+                            }
+                        }, 100);
+                    }
+                    
+                    if (mobileDropdown) {
+                        mobileDropdown.style.display = 'block';
+                        const contactItems = [
+                            { title: '+82 (0) 10 3124 8695', url: 'tel:+821031248695' },
+                            { title: 'info@studiopinvice.kr', url: 'mailto:info@studiopinvice.kr' },
+                            { title: '@studiopinvice', url: 'https://instagram.com/studiopinvice' },
+                            { title: '5F 172 Cheonggyecheon-ro, Jung-gu Seoul KR', url: 'https://www.google.com/maps/search/?api=1&query=StudioPinVice+172+Cheonggyecheon-ro+Jung-gu+Seoul' }
+                        ];
+                        
+                        mobileDropdown.innerHTML = contactItems.map(item => `
+                            <button class="inactive" onclick="window.open('${item.url}', '_blank', 'noopener,noreferrer')">
+                                ${item.title}
+                            </button>
+                        `).join('');
+                    }
+                } else {
+                    // Desktop: show contact content
+                    contactSection.classList.remove('hidden');
+                }
+            }
+            renderMenu();
+            renderProjects();
+            updateUI();
+        };
+
+        window.setActiveProject = function(id) {
+            const isMobile = window.innerWidth <= 768;
+            
+            // Mobile: Always reset scroll position to 0
+            if (isMobile) {
+                projectScrollPositions[id] = 0;
+                // Force both window and mainContent scroll to 0
+                window.scrollTo(0, 0);
+                mainContent.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+            }
+            
+            // If clicking the same project again, scroll to top (hero image)
+            if (clickedProjectId === id) {
+                if (isMobile) {
+                    // Mobile: ensure UI is updated and force scroll to top
+                    activeProjectId = id;
+                    showHome = false;
+                    
+                    window.scrollTo(0, 0);
+                    mainContent.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                    
+                    renderProjects();
+                    updateUI();
+                    
+                    window.scrollTo(0, 0);
+                    mainContent.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                    
+                    // Force scroll to top multiple times
+                    requestAnimationFrame(() => {
+                        window.scrollTo(0, 0);
+                        mainContent.scrollTop = 0;
+                        document.documentElement.scrollTop = 0;
+                        document.body.scrollTop = 0;
+                    });
+                    setTimeout(() => {
+                        window.scrollTo(0, 0);
+                        mainContent.scrollTop = 0;
+                        document.documentElement.scrollTop = 0;
+                        document.body.scrollTop = 0;
+                    }, 10);
+                    setTimeout(() => {
+                        window.scrollTo(0, 0);
+                        mainContent.scrollTop = 0;
+                        document.documentElement.scrollTop = 0;
+                        document.body.scrollTop = 0;
+                    }, 50);
+                    setTimeout(() => {
+                        window.scrollTo(0, 0);
+                        mainContent.scrollTop = 0;
+                        document.documentElement.scrollTop = 0;
+                        document.body.scrollTop = 0;
+                    }, 100);
+                } else {
+                    // Desktop: smooth scroll to top (hero image) like clicking hero image
+                    projectScrollPositions[id] = 0;
+                    mainContent.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+                
+                // Don't hide project list on desktop - keep it visible
+                if (isMobile) {
+                    const projectListEl = document.getElementById('project-list');
+                    if (projectListEl) {
+                        projectListEl.classList.add('hidden');
+                    }
+                }
+                return;
+            }
+            
+            // Save current scroll position before switching (desktop only)
+            if (clickedProjectId && !isMobile) {
+                projectScrollPositions[clickedProjectId] = mainContent.scrollTop;
+            }
+            
+            activeProjectId = id;
+            clickedProjectId = id; // save clicked project
+            showHome = false;
+            
+            // Hide project list when a project is selected (mobile only)
+            const projectListEl = document.getElementById('project-list');
+            if (projectListEl && isMobile) {
+                projectListEl.classList.add('hidden');
+            }
+            
+            // Mobile: Force scroll to 0 BEFORE any rendering
+            if (isMobile) {
+                window.scrollTo(0, 0);
+                mainContent.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+            }
+            
+            // Then render
+            renderProjects();
+            updateUI();
+            
+            // After rendering: handle scroll position
+            if (isMobile) {
+                // Mobile: Force scroll to top after rendering - multiple attempts
+                window.scrollTo(0, 0);
+                mainContent.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+                
+                requestAnimationFrame(() => {
+                    window.scrollTo(0, 0);
+                    mainContent.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                });
+                
+                setTimeout(() => {
+                    window.scrollTo(0, 0);
+                    mainContent.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                }, 0);
+                setTimeout(() => {
+                    window.scrollTo(0, 0);
+                    mainContent.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                }, 10);
+                setTimeout(() => {
+                    window.scrollTo(0, 0);
+                    mainContent.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                }, 50);
+                setTimeout(() => {
+                    window.scrollTo(0, 0);
+                    mainContent.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                }, 100);
+                setTimeout(() => {
+                    window.scrollTo(0, 0);
+                    mainContent.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                }, 200);
+                setTimeout(() => {
+                    window.scrollTo(0, 0);
+                    mainContent.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                }, 300);
+            } 
+            // Desktop: Restore saved scroll position
+            else {
+                const savedPosition = projectScrollPositions[id] || 0;
+                mainContent.scrollTop = savedPosition;
+                requestAnimationFrame(() => {
+                    mainContent.scrollTop = savedPosition;
+                });
+            }
+        };
+
+        window.hoverProject = function(id) {
+            // Only allow hover to change images if no project is clicked
+            if (!clickedProjectId) {
+                activeProjectId = id;
+                updateUI();
+            }
+        };
+
+        // Adjust portrait (tall) images so their displayed height matches
+        // the height of landscape images in the same column.
+        function adjustTallImages() {
+            const imgs = Array.from(document.querySelectorAll('.images-column img'));
+            if (!imgs.length) return;
+
+            const loadPromises = imgs.map(img => new Promise(resolve => {
+                if (img.complete) return resolve(img);
+                img.addEventListener('load', () => resolve(img));
+                img.addEventListener('error', () => resolve(img));
+            }));
+
+            Promise.all(loadPromises).then(loaded => {
+                // Ensure every image fits inside the image-wrap height (viewport minus gaps)
+                const wrap = document.querySelector('.images-column .image-wrap');
+                const containerH = wrap ? wrap.clientHeight : 0;
+                if (!containerH) return;
+
+                loaded.forEach((img, idx) => {
+                    // skip hero images (they use cover)
+                    if (img.dataset && img.dataset.hero) return;
+                    
+                    const isPortrait = img.naturalHeight > img.naturalWidth;
+                    const projectId = img.closest('.images-column')?.parentElement?.dataset?.projectId;
+                    
+                    // On mobile, skip all special handling and make images fill screen
+                    const isMobile = window.innerWidth <= 768;
+                    if (isMobile) {
+                        // All images on mobile should fill width
+                        img.style.width = '100%';
+                        img.style.height = 'auto';
+                        img.style.maxWidth = '100%';
+                        img.style.maxHeight = 'none';
+                        img.style.objectFit = 'cover';
+                        if (img.parentElement) {
+                            img.parentElement.style.margin = '0';
+                        }
+                        return;
+                    }
+                    
+                    // Check if this is special images that are handled separately (desktop only)
+                    const imgSrc = img.getAttribute('src');
+                    const isDesignLab5 = imgSrc?.includes('1-5Hannam15.jpg'); // 1-5
+                    const isDesignLab6 = imgSrc?.includes('1-5Hannam14.jpg'); // 1-6
+                    const isUnbannable2 = imgSrc?.includes('Unbannable3.jpeg');
+                    const isUnbannable3 = imgSrc?.includes('Unbannable4.jpeg');
+                    const isUnbannable4 = imgSrc?.includes('Unbannable5.jpg');
+                    const isModuleBooth6 = imgSrc?.includes('PB2.0_6.png');
+                    const isModuleBooth7 = imgSrc?.includes('PB2.0_7.png');
+                    const isPlace13Image19 = imgSrc?.includes('1-3Place28.png');
+                    const isPlace13Image6 = imgSrc?.includes('1-3Place7.jpg'); // 3-6 is handled in special block
+                    
+                    // Skip 1-5 and 1-6 as they have their own inline height styling
+                    if (isDesignLab5 || isDesignLab6) {
+                        return;
+                    }
+                    
+                    img.style.maxHeight = containerH + 'px';
+                    img.style.maxWidth = '100%';
+                    
+                    // Special images already have CSS-based alignment, just set size
+                    // Skip 3-6 (Place7.jpg) as it's handled in its own special rendering block
+                    if (isPlace13Image6) {
+                        return; // Skip processing for 3-6
+                    }
+                    
+                    if (isUnbannable2 || isUnbannable3 || isUnbannable4 || isModuleBooth6 || isModuleBooth7 || isPlace13Image19) {
+                        img.style.width = 'auto';
+                        img.style.height = 'auto';
+                        if (isPlace13Image19) {
+                            img.parentElement.style.margin = '0';
+                        }
+                    } else if (isPortrait) {
+                        // Portrait: set size, no margin manipulation
+                        img.style.width = 'auto';
+                        img.style.height = 'auto';
+                        img.parentElement.style.margin = '0';
+                    } else {
+                        // Landscape: fill width, center alignment, no margin
+                        img.style.width = '100%';
+                        img.style.height = 'auto';
+                        img.parentElement.style.margin = '0';
+                    }
+                });
+            });
+        }
+
+        // Re-adjust tall images on window resize
+        window.addEventListener('resize', () => {
+            // debounce slightly
+            clearTimeout(window._adjustTallImagesTimer);
+            window._adjustTallImagesTimer = setTimeout(() => adjustTallImages(), 120);
+        });
+
+        // Smooth scrolling - no auto-snap, snap only on image click
+        function setupScrollSnapNavigation() {
+            // Remove wheel-based snap navigation
+            // Free scrolling is now enabled
+            // Snap will only happen when user clicks on an image
+        }
+
+        // Adjust project details alignment based on content height
+        function adjustProjectDetailsAlignment() {
+            const container = document.getElementById('project-details-container');
+            const content = document.getElementById('project-details');
+            
+            if (!container || !content) return;
+            
+            // Check if content overflows
+            if (content.scrollHeight > container.clientHeight) {
+                // Content is overflowing - align to top (flex-start)
+                container.style.justifyContent = 'flex-start';
+                container.scrollTop = 0; // Scroll to top
+            } else {
+                // Content fits - align to bottom (flex-end)
+                container.style.justifyContent = 'flex-end';
+            }
+        }
+
+        function updateUI() {
+            // If showing Home, hide project lists and sections
+            if (showHome) {
+                workSection.classList.add('hidden');
+                pressSection.classList.add('hidden');
+                contactSection.classList.add('hidden');
+            } else {
+                // Ensure the correct category section is visible when not on Home
+                if (currentCategory === 'WORK') {
+                    workSection.classList.remove('hidden');
+                    pressSection.classList.add('hidden');
+                    contactSection.classList.add('hidden');
+                } else if (currentCategory === 'PRESS') {
+                    workSection.classList.add('hidden');
+                    pressSection.classList.remove('hidden');
+                    contactSection.classList.add('hidden');
+                } else if (currentCategory === 'CONTACT') {
+                    workSection.classList.add('hidden');
+                    pressSection.classList.add('hidden');
+                    contactSection.classList.remove('hidden');
+                }
+            }
+
+            // Update Details
+            if (activeProjectId) {
+                const project = PROJECTS.find(p => p.id === activeProjectId);
+                const metadata = [
+                    { label: 'TYPE', value: project.type },
+                    { label: 'CLIENT', value: project.client },
+                    { label: 'MATERIAL', value: project.material },
+                    { label: 'LOCATION', value: project.location },
+                    { label: 'FLOOR AREA', value: project.floorArea },
+                    { label: 'SIZE', value: project.size },
+                    { label: 'SIGNAGE', value: project.signage },
+                    { label: 'INVOLVEMENT', value: project.involvement },
+                    { label: 'DATE', value: project.date },
+                    { label: 'PHOTOGRAPHY', value: project.photography },
+                ].filter(item => item.value);
+
+                // Render metadata each on its own line (Type and Client separated)
+                projectDetails.innerHTML = `
+                    <div style="display: flex; flex-direction: column; gap: 24px;">
+                        <div style="display: flex; flex-direction: column; gap: 0px;">
+                            ${metadata.map(item => {
+                                const displayValue = item.label === 'PHOTOGRAPHY' 
+                                    ? `<a href="https://han-sunghoon.com/" target="_blank" style="color: #000; text-decoration: none; font-size: 14px !important; font-weight: 500 !important; line-height: 1.3 !important; font-family: inherit;">${item.value}</a>`
+                                    : item.value;
+                                return `
+                                <div class="meta-item">
+                                    <span class="meta-label">${item.label.toLowerCase().replace(/^./, s => s.toUpperCase())} : </span>
+                                    <span class="meta-value">${displayValue}</span>
+                                </div>
+                            `}).join('')}
+                        </div>
+                        <div class="space-y-4" style="display: flex; flex-direction: column; gap: 16px;">
+                            <p style="margin: 0; padding: 0; text-align: left;">${project.descriptionKo}</p>
+                            <p style="margin: 0; padding: 0; text-align: left; line-height: 1.15 !important;">${project.descriptionEn}</p>
+                        </div>
+                    </div>
+                `;
+                projectDetails.classList.remove('hidden');
+                
+                // Adjust alignment based on content height
+                adjustProjectDetailsAlignment();
+            } else {
+                projectDetails.innerHTML = '';
+                projectDetails.classList.add('hidden');
+            }
+
+            // Home screen: show empty main content when showHome === true
+            if (showHome) {
+                mainContent.innerHTML = '<div class="w-full h-full flex items-center justify-center bg-white"></div>';
+                mainContent.scrollTop = 0;
+                projectDetails.classList.add('hidden');
+            }
+            // WORK category: show blank page when no project is active
+            else if (currentCategory === 'WORK' && !activeProjectId) {
+                mainContent.innerHTML = '<div class="w-full h-full flex items-center justify-center bg-white"></div>';
+                mainContent.scrollTop = 0;
+                projectDetails.classList.add('hidden');
+            }
+            // Update Main Content Images
+            else if (activeProjectId) {
+                const project = PROJECTS.find(p => p.id === activeProjectId);
+                let imgs = [];
+                if (project.id === '1-5-design-lab') {
+                    imgs = designLabImages;
+                } else if (project.id === 'mma-photo-booth') {
+                    imgs = mmaImages;
+                } else if (project.id === 'place-1-3-1-1-company') {
+                    imgs = place13Images;
+                } else if (project.id === 'chapel') {
+                    imgs = chapelImages;
+                } else if (project.id === 'one-life-welfare-community-center') {
+                    imgs = oneLifeWelfareImages;
+                } else if (project.id === 'korea-post-vip-lounge') {
+                    imgs = koreaPostImages;
+                } else if (project.id === 'unbannable-art-piece') {
+                    imgs = unbannableImages;
+                } else if (project.id === 'module-booth-2-0') {
+                    imgs = moduleBoothImages;
+                } else if (project.id === 'sagittal-plane-of-a-chair') {
+                    imgs = sagittalImages;
+                } else if (project.imageUrl) {
+                    imgs = [project.imageUrl];
+                } else {
+                    imgs = []; // no images available
+                }
+
+                // Check if mobile
+                const isMobile = window.innerWidth <= 768;
+                
+                // Build project info HTML for mobile
+                let projectInfoHTML = '';
+                let projectTitleHTML = '';
+                if (isMobile && project) {
+                    const metadata = [
+                        { label: 'TYPE', value: project.type },
+                        { label: 'CLIENT', value: project.client },
+                        { label: 'MATERIAL', value: project.material },
+                        { label: 'LOCATION', value: project.location },
+                        { label: 'FLOOR AREA', value: project.floorArea },
+                        { label: 'SIZE', value: project.size },
+                        { label: 'SIGNAGE', value: project.signage },
+                        { label: 'INVOLVEMENT', value: project.involvement },
+                        { label: 'DATE', value: project.date },
+                        { label: 'PHOTOGRAPHY', value: project.photography },
+                    ].filter(item => item.value);
+                    
+                    projectInfoHTML = `
+                        <div style="padding: 0px 15px 15px 15px; margin-bottom: 5px; font-size: 2vw !important;">
+                            <div style="display: flex; flex-direction: column; gap: 24px;">
+                                <div style="display: flex; flex-direction: column; gap: 3px;">
+                                    ${metadata.map(item => {
+                                        const displayValue = item.label === 'PHOTOGRAPHY'
+                                            ? `<a href="https://han-sunghoon.com/" target="_blank" style="color: #000; text-decoration: none; font-size: 2vw !important; font-weight: 500 !important; line-height: 1.3 !important; font-family: inherit;">${item.value}</a>`
+                                            : item.value;
+                                        return `
+                                        <div style="font-size: 2vw !important; line-height: 1.3 !important;">
+                                            <span style="color: #000; font-size: 2vw !important;">${item.label.toLowerCase().replace(/^./, s => s.toUpperCase())}:</span>
+                                            <span style="color: #000; font-size: 2vw !important;"> ${displayValue}</span>
+                                        </div>
+                                    `}).join('')}
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 16px;">
+                                    <p style="margin: 0; padding: 0; text-align: left; font-size: 2vw !important; line-height: 1.3 !important; word-wrap: break-word !important;">${project.descriptionKo}</p>
+                                    <p style="margin: 0; padding: 0; text-align: left; font-size: 2vw !important; line-height: 1.3 !important; word-wrap: break-word !important;">${project.descriptionEn}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Add project title to a fixed header
+                    const mobileTitle = document.getElementById('mobile-project-title');
+                    const mobileProjectListDropdown = document.getElementById('mobile-project-list-dropdown');
+                    if (mobileTitle) {
+                        mobileTitle.textContent = project.title;
+                        mobileTitle.style.display = 'block';
+                        
+                        // Add click handler to toggle project list dropdown
+                        mobileTitle.onclick = function() {
+                            if (mobileProjectListDropdown) {
+                                mobileProjectListDropdown.classList.toggle('open');
+                            }
+                        };
+                    }
+                    
+                    // Populate project list dropdown with all projects
+                    if (mobileProjectListDropdown) {
+                        mobileProjectListDropdown.style.display = 'block';
+                        mobileProjectListDropdown.innerHTML = PROJECTS.map(p => `
+                            <button data-project-id="${p.id}" class="${p.id === project.id ? '' : 'inactive'}" style="font-weight: ${p.id === project.id ? 'bold' : 'normal'};">
+                                ${p.title}
+                            </button>
+                        `).join('');
+                        
+                        // Add click handlers to project list dropdown items
+                        const projectListDropdownButtons = mobileProjectListDropdown.querySelectorAll('button[data-project-id]');
+                        projectListDropdownButtons.forEach(btn => {
+                            const projectId = btn.getAttribute('data-project-id');
+                            btn.onclick = function(e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                mobileProjectListDropdown.classList.remove('open');
+                                
+                                // Force scroll to 0 immediately before calling setActiveProject
+                                mainContent.scrollTop = 0;
+                                
+                                setActiveProject(projectId);
+                                
+                                // Force scroll to 0 again after a brief delay
+                                setTimeout(() => {
+                                    mainContent.scrollTop = 0;
+                                }, 0);
+                            };
+                        });
+                    }
+                } else if (isMobile) {
+                    // Hide title and dropdown when no project is active
+                    const mobileTitle = document.getElementById('mobile-project-title');
+                    const mobileDropdown = document.getElementById('mobile-project-dropdown');
+                    if (mobileTitle) {
+                        mobileTitle.style.display = 'none';
+                    }
+                    if (mobileDropdown) {
+                        mobileDropdown.style.display = 'none';
+                        mobileDropdown.classList.remove('open');
+                    }
+                }
+
+                mainContent.innerHTML = `
+                    <div class="images-column">
+                                ${projectInfoHTML}
+                                ${imgs.map((url, idx) => {
+                                    const isMobile = window.innerWidth <= 768;
+                                    
+                                    // On mobile: simple rendering without special desktop cases
+                                    if (isMobile) {
+                                        // Skip 3-17 bottom view on mobile (only show single view)
+                                        if (project.id === 'place-1-3-1-1-company' && idx === 16) {
+                                            return `
+                                            <div class="image-wrap">
+                                                <div class="image-container">
+                                                    <img 
+                                                        src="${url}" 
+                                                        alt="${project.title} ${idx + 1}"
+                                                        style="width: 100%; height: auto; object-fit: cover; display: block;"
+                                                        loading="eager"
+                                                        onclick="scrollToImage(this)"
+                                                    />
+                                                    <div class="image-index">${idx + 1}</div>
+                                                </div>
+                                            </div>
+                                            `;
+                                        }
+                                        
+                                        // 3-20: scale 130% on mobile
+                                        if (project.id === 'place-1-3-1-1-company' && idx === 19) {
+                                            return `
+                                            <div class="image-wrap">
+                                                <div class="image-container" style="transform: scale(1.3); transform-origin: center;">
+                                                    <img 
+                                                        src="${url}" 
+                                                        alt="${project.title} ${idx + 1}"
+                                                        style="width: 100%; height: auto; object-fit: cover; display: block;"
+                                                        loading="eager"
+                                                        onclick="scrollToImage(this)"
+                                                    />
+                                                    <div class="image-index">${idx + 1}</div>
+                                                </div>
+                                            </div>
+                                            `;
+                                        }
+                                        
+                                        // All other images: simple full-width rendering
+                                        return `
+                                        <div class="image-wrap">
+                                            <div class="image-container">
+                                                <img 
+                                                    src="${url}" 
+                                                    alt="${project.title} ${idx + 1}"
+                                                    style="width: 100%; height: auto; object-fit: cover; display: block;"
+                                                    loading="eager"
+                                                    onclick="scrollToImage(this)"
+                                                />
+                                                <div class="image-index">${idx + 1}</div>
+                                            </div>
+                                        </div>
+                                        `;
+                                    }
+                                    
+                                    // Desktop: keep all special handling
+                                    // 5-3: 완전히 좌측 끝 커스텀 렌더링 (다른 분기와 겹치지 않게 즉시 return)
+                                    if (project.id === 'one-life-welfare-community-center' && idx === 2) {
+                                        return `
+                                            <div class="image-wrap" data-align="left" style="position:relative;margin-left:-13px;display:flex;justify-content:flex-start !important;align-items:flex-start !important;width:calc(100% + 13px);padding:0 !important;margin-top:0 !important;margin-bottom:12vh !important;overflow:visible;box-sizing:content-box;cursor:default;">
+                                                <div class="image-container" style="width:100%;margin:0 !important;padding:0 !important;display:block;">
+                                                    <img 
+                                                        src="${url}" 
+                                                        alt="${project.title} ${idx}"
+                                                        style="width:100% !important;max-width:100% !important;height:auto !important;object-fit:contain !important;object-position:left !important;margin:0 !important;padding:0 !important;display:block !important;left:0 !important;position:relative !important;"
+                                                        loading="eager"
+                                                        onclick="scrollToImage(this)"
+                                                    />
+                                                    <div class="image-index">5-3</div>
+                                                </div>
+                                            </div>
+                                        `;
+                                    }
+                                    // 5-2: 우측 정렬
+                                    let wrapAttrsCustom = '';
+                                    let imgAttrsCustom = '';
+                                    if (project.id === 'one-life-welfare-community-center' && idx === 1) {
+                                        wrapAttrsCustom = 'data-align="right"';
+                                        imgAttrsCustom = 'data-align="right"';
+                                    }
+                                    // 5-9: 우측 끝 정렬
+                                    if (project.id === 'one-life-welfare-community-center' && idx === 8) {
+                                        wrapAttrsCustom = 'data-align="right"';
+                                        imgAttrsCustom = 'data-align="right"';
+                                    }
+                                    // 1-14: 우측 끝 정렬
+                                    if (project.id === 'design-lab-1-5' && idx === 13) {
+                                        wrapAttrsCustom = 'data-align="right"';
+                                        imgAttrsCustom = 'data-align="right"';
+                                    }
+                                    // 여기서 중괄호를 닫지 않음 (문법 오류 수정)
+                                    // Special handling for 3-11 - crop top/bottom 100px and scale 120%
+                                    if (project.id === 'place-1-3-1-1-company' && idx === 10) {
+                                        const img11 = imgs[10];
+                                        return `
+                                        <div class="image-wrap" data-align="right" style="overflow: hidden; cursor: default;">
+                                            <div class="image-container" style="overflow: hidden; width: auto; height: calc(100vh - var(--edge-gap) - 200px); display: flex; align-items: center; justify-content: flex-end;">
+                                                <img 
+                                                    src="${img11}" 
+                                                    alt="${project.title} 11"
+                                                    style="height: 120%; width: auto; object-fit: cover; display: block; margin: 0 0 0 auto; cursor: pointer;"
+                                                    loading="eager"
+                                                    data-align="right"
+                                                    onclick="scrollToImage(this)"
+                                                />
+                                                <div class="image-index">3-11</div>
+                                            </div>
+                                        </div>
+                                        `;
+                                    }
+                                    
+                                    // Special handling for 3-6 - align left, enlarge to 125% of viewport
+                                    if (project.id === 'place-1-3-1-1-company' && idx === 5) {
+                                        const img6 = imgs[5];
+                                        return `
+                                        <div class="image-wrap" style="overflow: visible; padding-left: 0 !important; justify-content: flex-start !important; align-items: flex-start !important; cursor: default;">
+                                            <div class="image-container" style="overflow: visible; margin: 0 !important; width: auto; height: auto; display: block;">
+                                                <img 
+                                                    src="${img6}" 
+                                                    alt="${project.title} 6"
+                                                    style="height: calc(125vh - var(--edge-gap)) !important; width: auto; object-fit: contain; display: block; margin: 0 !important; cursor: pointer;"
+                                                    loading="eager"
+                                                    onclick="scrollToImage(this)"
+                                                />
+                                                <div class="image-index">3-6</div>
+                                            </div>
+                                        </div>
+                                        `;
+                                    }
+                                    
+                                    // Special handling for 3-17 - split into top and bottom views
+                                    if (project.id === 'place-1-3-1-1-company' && idx === 16) {
+                                        const img17 = imgs[16];
+                                        return `
+                                        <div class="image-wrap" style="overflow: hidden; cursor: default;">
+                                            <div class="image-container" style="overflow: hidden; width: 100%; height: 100%;">
+                                                <img 
+                                                    src="${img17}" 
+                                                    alt="${project.title} 17 top"
+                                                    style="width: 100%; height: 100%; object-fit: cover; object-position: center top; display: none; cursor: pointer;"
+                                                    loading="eager"
+                                                    onclick="scrollToImage(this)"
+                                                />
+                                                <div class="image-index">3-17 (상단)</div>
+                                            </div>
+                                        </div>
+                                        <div class="image-wrap" style="overflow: visible; display: flex; justify-content: center; align-items: flex-end; cursor: default;">
+                                            <div class="image-container" style="overflow: visible; display: flex; justify-content: center; align-items: flex-end;">
+                                                <img 
+                                                    src="${img17}" 
+                                                    alt="${project.title} 17 bottom"
+                                                    style="height: calc(100vh - var(--edge-gap)); width: auto; object-fit: contain; display: block; transform: translateX(-200px) scale(1.5); transform-origin: bottom center; cursor: pointer;"
+                                                    loading="eager"
+                                                    onclick="scrollToImage(this)"
+                                                />
+                                                <div class="image-index">3-17 (하단)</div>
+                                            </div>
+                                        </div>
+                                        `;
+                                    }
+                                    
+                                    // 1-5 and 1-6 now render individually like other images
+                                    
+                                    // Skip 1-6 as it will be rendered together with 1-5
+                                    if (project.id === '1-5-design-lab' && idx === 5) {
+                                        return '';
+                                    }
+                                    
+                                    // Skip 2-10, 2-11, 2-12 as they will be rendered together with 2-9
+                                    if (project.id === 'mma-photo-booth' && (idx === 9 || idx === 10 || idx === 11)) {
+                                        return '';
+                                    }
+                                    
+                                    // Special handling for 3-14 - right align
+                                    if (project.id === 'place-1-3-1-1-company' && idx === 13) {
+                                        return `
+                                        <div class="image-wrap" data-align="right" style="display: flex !important; justify-content: flex-end !important; align-items: center !important; height: calc(100vh - var(--edge-gap)) !important; padding-right: 0 !important; margin-right: 0 !important;">
+                                            <div class="image-container" style="display: inline-flex !important; position: relative !important; max-height: none !important; max-width: none !important; margin-right: 0 !important;">
+                                                <img 
+                                                    src="${url}" 
+                                                    alt="${project.title} 14"
+                                                    data-align="right"
+                                                    style="height: calc(100vh - var(--edge-gap)) !important; width: auto !important; display: block !important; cursor: pointer !important; margin: 0 !important; padding: 0 !important;"
+                                                    loading="eager"
+                                                    onclick="scrollToImage(this)"
+                                                />
+                                                <div class="image-index">3-14</div>
+                                            </div>
+                                        </div>
+                                        `;
+                                    }
+                                    
+                                    // Special handling for 5-4 - center align
+                                    if (project.id === 'one-life-welfare-community-center' && idx === 3) {
+                                        return `
+                                        <div class="image-wrap" style="display: flex !important; justify-content: center !important; align-items: center !important; height: calc(100vh - var(--edge-gap)) !important;">
+                                            <div class="image-container" style="display: inline-flex !important; position: relative !important; max-height: none !important; max-width: none !important;">
+                                                <img 
+                                                    src="${url}" 
+                                                    alt="${project.title} 4"
+                                                    style="height: calc(100vh - var(--edge-gap)) !important; width: auto !important; display: block !important; cursor: pointer !important; margin: 0 !important;"
+                                                    loading="eager"
+                                                    onclick="scrollToImage(this)"
+                                                />
+                                                <div class="image-index">5-4</div>
+                                            </div>
+                                        </div>
+                                        `;
+                                    }
+                                    
+                                    // Special handling for 3-15 - align to right edge
+                                    if (project.id === 'place-1-3-1-1-company' && idx === 14) {
+                                        return `
+                                        <div class="image-wrap" data-align="right" style="display: flex !important; justify-content: flex-end !important; align-items: center !important; height: calc(100vh - var(--edge-gap)) !important; padding-right: 0 !important; margin-right: 0 !important;">
+                                            <div class="image-container" style="display: inline-flex !important; position: relative !important; max-height: none !important; max-width: none !important; margin-right: 0 !important;">
+                                                <img 
+                                                    src="${url}" 
+                                                    alt="${project.title} 15"
+                                                    data-align="right"
+                                                    style="height: calc(100vh - var(--edge-gap)) !important; width: auto !important; display: block !important; cursor: pointer !important; margin: 0 !important; padding: 0 !important;"
+                                                    loading="eager"
+                                                    onclick="scrollToImage(this)"
+                                                />
+                                                <div class="image-index">3-15</div>
+                                            </div>
+                                        </div>
+                                        `;
+                                    }
+                                    
+                                    // Special handling for 3-13 - left align
+                                    if (project.id === 'place-1-3-1-1-company' && idx === 12) {
+                                        const img13 = imgs[12];
+                                        return `
+                                        <div class="image-wrap" data-align="left" style="display: flex !important; justify-content: flex-start !important; align-items: center !important; padding: 0 !important; height: calc(100vh - var(--edge-gap)) !important; margin-left: 0 !important; overflow: visible !important;">
+                                            <div class="image-container" style="display: inline-flex !important; justify-content: flex-start !important; align-items: center !important; position: relative !important; margin-left: 0 !important; max-height: none !important; max-width: none !important; overflow: visible !important;">
+                                                <img 
+                                                    src="${img13}" 
+                                                    alt="${project.title} 13"
+                                                    data-align="left"
+                                                    style="height: calc(100vh - var(--edge-gap)) !important; width: auto !important; display: block !important; cursor: pointer !important; margin-left: 0 !important;"
+                                                    loading="eager"
+                                                    onclick="scrollToImage(this)"
+                                                />
+                                                <div class="image-index">3-13</div>
+                                            </div>
+                                        </div>
+                                        `;
+                                    }
+                                    
+                                    // Special handling for 2-9, 2-10, 2-11, 2-12 - render in 2x2 grid
+                                    if (project.id === 'mma-photo-booth' && idx === 8) {
+                                        const img9 = imgs[8];
+                                        const img10 = imgs[9];
+                                        const img11 = imgs[10];
+                                        const img12 = imgs[11];
+                                        return `
+                                        <div class="image-wrap" style="display: flex !important; flex-direction: column !important; gap: 13px !important; padding: 0 !important; height: calc(100vh - var(--edge-gap)) !important;">
+                                            <div style="display: flex !important; flex-direction: row !important; gap: 13px !important; flex: 1 !important;">
+                                                <div class="image-container" style="flex: 1 !important; display: flex !important; justify-content: center !important; align-items: center !important; height: 100% !important;">
+                                                    <img 
+                                                        src="${img9}" 
+                                                        alt="${project.title} 9"
+                                                        style="width: 100% !important; height: 100% !important; object-fit: contain !important; cursor: pointer !important; display: block !important;"
+                                                        loading="eager"
+                                                        onclick="scrollToImage(this)"
+                                                    />
+                                                    <div class="image-index">2-9</div>
+                                                </div>
+                                                <div class="image-container" style="flex: 1 !important; display: flex !important; justify-content: center !important; align-items: center !important; height: 100% !important;">
+                                                    <img 
+                                                        src="${img10}" 
+                                                        alt="${project.title} 10"
+                                                        style="width: 100% !important; height: 100% !important; object-fit: contain !important; cursor: pointer !important; display: block !important;"
+                                                        loading="eager"
+                                                        onclick="scrollToImage(this)"
+                                                    />
+                                                    <div class="image-index">2-10</div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex !important; flex-direction: row !important; gap: 13px !important; flex: 1 !important;">
+                                                <div class="image-container" style="flex: 1 !important; display: flex !important; justify-content: center !important; align-items: center !important; height: 100% !important;">
+                                                    <img 
+                                                        src="${img11}" 
+                                                        alt="${project.title} 11"
+                                                        style="width: 100% !important; height: 100% !important; object-fit: contain !important; cursor: pointer !important; display: block !important;"
+                                                        loading="eager"
+                                                        onclick="scrollToImage(this)"
+                                                    />
+                                                    <div class="image-index">2-11</div>
+                                                </div>
+                                                <div class="image-container" style="flex: 1 !important; display: flex !important; justify-content: center !important; align-items: center !important; height: 100% !important;">
+                                                    <img 
+                                                        src="${img12}" 
+                                                        alt="${project.title} 12"
+                                                        style="width: 100% !important; height: 100% !important; object-fit: contain !important; cursor: pointer !important; display: block !important;"
+                                                        loading="eager"
+                                                        onclick="scrollToImage(this)"
+                                                    />
+                                                    <div class="image-index">2-12</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        `;
+                                    }
+                                    
+                                    // Special handling for 1-5 and 1-6 - render them side by side
+                                    if (project.id === '1-5-design-lab' && idx === 4) {
+                                        const img5 = imgs[4];
+                                        const img6 = imgs[5];
+                                        return `
+                                        <div class="image-wrap" style="display: flex !important; flex-direction: row !important; justify-content: space-between !important; align-items: stretch !important; gap: 13px !important; padding: 0 !important; height: calc(100vh - var(--edge-gap)) !important;">
+                                            <div class="image-container" style="flex: 1 !important; display: flex !important; justify-content: flex-start !important; align-items: stretch !important; height: 100% !important;">
+                                                <img 
+                                                    src="${img5}" 
+                                                    alt="${project.title} 5"
+                                                    data-align="left"
+                                                    style="height: 100% !important; width: auto !important; object-fit: contain !important; cursor: pointer !important; display: block !important;"
+                                                    loading="eager"
+                                                    onclick="scrollToImage(this)"
+                                                />
+                                                <div class="image-index">1-5</div>
+                                            </div>
+                                            <div class="image-container" style="flex: 1 !important; display: flex !important; justify-content: flex-end !important; align-items: stretch !important; height: 100% !important;">
+                                                <img 
+                                                    src="${img6}" 
+                                                    alt="${project.title} 6"
+                                                    data-align="right"
+                                                    style="height: 100% !important; width: auto !important; object-fit: contain !important; cursor: pointer !important; display: block !important;"
+                                                    loading="eager"
+                                                    onclick="scrollToImage(this)"
+                                                />
+                                                <div class="image-index">1-6</div>
+                                            </div>
+                                        </div>
+                                        `;
+                                    }
+                                    
+                                    // Special handling for last image of unbannable project
+                                    const isUnbannableLast = project.id === 'unbannable-art-piece' && idx === imgs.length - 1;
+                                    // Special handling for sagittal project image 3 (idx 2) - flip horizontally
+                                    const isSagittal3 = project.id === 'sagittal-plane-of-a-chair' && idx === 2;
+                                    // Special handling for korea post image 10 (idx 8) - rotate -90deg (counterclockwise)
+                                    const isKoreaPost10 = project.id === 'korea-post-vip-lounge' && idx === 8;
+                                    // Special handling for 1-5 design lab image 3 (idx 2) - scale 1.35
+                                    const isDesignLab3 = project.id === '1-5-design-lab' && idx === 2;
+                                    // Special handling for 1-5 design lab image 2 (idx 1) - stick to left
+                                    const isDesignLab2 = project.id === '1-5-design-lab' && idx === 1;
+                                    // Special handling for 1-5 design lab image 4 (idx 3) - align with image 3
+                                    const isDesignLab4 = project.id === '1-5-design-lab' && idx === 3;
+                                    // Special handling for 1-5 design lab image 7 (idx 6) - move right
+                                    const isDesignLab7 = project.id === '1-5-design-lab' && idx === 6;
+                                    // Special handling for 1-5 design lab image 8 (idx 7) - move left
+                                    const isDesignLab8 = project.id === '1-5-design-lab' && idx === 7;
+                                    // Special handling for place 1-3 image 20 (idx 19) - reduce size by 40%
+                                    const isPlace13Image20 = project.id === 'place-1-3-1-1-company' && idx === 19;
+                                    // Special handling for place 1-3 image 3 (idx 2) - reduce size by 10%
+                                    const isPlace13Image3 = project.id === 'place-1-3-1-1-company' && idx === 2;
+                                    // Special handling for place 1-3 image 5 (idx 4) - reduce size by 10%
+                                    const isPlace13Image5 = project.id === 'place-1-3-1-1-company' && idx === 4;
+                                    // Special handling for place 1-3 image 11 (idx 10) - crop top/bottom 100px and scale 120%
+                                    const isPlace13Image11 = project.id === 'place-1-3-1-1-company' && idx === 10;
+                                    // Special handling for place 1-3 image 12 (idx 11) - move right 50px
+                                    const isPlace13Image12 = project.id === 'place-1-3-1-1-company' && idx === 11;
+                                    // Special handling for place 1-3 image 19 (idx 18) - center align
+                                    const isPlace13Image19 = project.id === 'place-1-3-1-1-company' && idx === 18;
+                                    // Special handling for 5-4 (idx 3) - center align
+                                    const isOneLifeWelfare4 = project.id === 'one-life-welfare-community-center' && idx === 3;
+                                    // Special handling for chapel image 4 (idx 3) - move right 100px
+                                    const isChapel4 = project.id === 'chapel' && idx === 3;
+                                    
+                                    let scaleStyle = '';
+                                    if (isUnbannableLast) {
+                                        scaleStyle = '';
+                                    } else if (isKoreaPost10) {
+                                        scaleStyle = 'transform: rotate(-90deg);';
+                                    } else if (isDesignLab3) {
+                                        scaleStyle = 'height: calc(130vh - var(--edge-gap)) !important; margin-right: 30%;';
+                                    } else if (isDesignLab2) {
+                                        scaleStyle = '';
+                                    } else if (isDesignLab4) {
+                                        scaleStyle = '';
+                                    } else if (isDesignLab7) {
+                                        scaleStyle = '';
+                                    } else if (isDesignLab8) {
+                                        scaleStyle = '';
+                                    } else if (isPlace13Image20) {
+                                        scaleStyle = 'transform: scale(0.6); transform-origin: center;';
+                                    } else if (isPlace13Image3 || isPlace13Image5) {
+                                        scaleStyle = 'transform: scale(0.9); transform-origin: center;';
+                                    } else if (isPlace13Image12) {
+                                        scaleStyle = 'margin-left: 50px;';
+                                    } else if (isPlace13Image11) {
+                                        scaleStyle = 'transform: scale(1.2); transform-origin: center; object-fit: cover; object-position: center center; height: calc(100% - 200px);';
+                                    } else if (isChapel4) {
+                                        scaleStyle = 'margin-left: 600px;';
+                                    }
+                                    
+                                    // Pre-set data attributes for instant alignment
+                                    let wrapAttrs = '';
+                                    let imgAttrs = '';
+                                    let wrapAlign = '';
+                                    
+                                    if (project.id === 'one-life-welfare-community-center') {
+                                        if (idx === 3) {
+                                            // 5-4: center align
+                                            wrapAlign = '';  // No left/right alignment = centered by default
+                                        }
+                                        if (idx === 4) {
+                                            // 5-5: left align
+                                            imgAttrs = 'data-align="left"';
+                                            wrapAlign = 'data-align="left"';
+                                        }
+                                        if (idx === 10) {
+                                            // 5-11: left align
+                                            imgAttrs = 'data-align="left"';
+                                            wrapAlign = 'data-align="left"';
+                                        }
+                                        if (idx === 14) {
+                                            // 5-15: right align
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        if (idx === 17) {
+                                            // 5-18: left align
+                                            imgAttrs = 'data-align="left"';
+                                            wrapAlign = 'data-align="left"';
+                                        }
+                                        if (idx === 20) {
+                                            // 5-21: right align
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        if (idx === 21) {
+                                            // 5-22: left align
+                                            imgAttrs = 'data-align="left"';
+                                            wrapAlign = 'data-align="left"';
+                                        }
+                                    } else if (project.id === 'chapel') {
+                                        if (idx === 2) {
+                                            // 4-3: left align
+                                            imgAttrs = 'data-align="left"';
+                                            wrapAlign = 'data-align="left"';
+                                        }
+                                        if (idx === 4) {
+                                            // 4-5: left align
+                                            imgAttrs = 'data-align="left"';
+                                            wrapAlign = 'data-align="left"';
+                                        }
+                                        if (idx === 5) {
+                                            // 4-6: right align
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                    } else if (project.id === 'unbannable-art-piece') {
+                                        if (idx === 1) {
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        if (idx === 2) {
+                                            wrapAttrs = 'data-overlap';
+                                            imgAttrs = 'data-align="left"';
+                                            wrapAlign = 'data-align="left"';
+                                        }
+                                        if (idx === 3) {
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                    } else if (project.id === 'module-booth-2-0') {
+                                        if (idx === 5) {
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        if (idx === 6) {
+                                            imgAttrs = 'data-align="left"';
+                                            wrapAlign = 'data-align="left"';
+                                        }
+                                        if (idx === 7) {
+                                            // 8-8: right align
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        if (idx === 8) {
+                                            // 8-9: right align
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        if (idx === 9) {
+                                            // 8-10: right align
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        if (idx === 10) {
+                                            // 8-11: left align
+                                            imgAttrs = 'data-align="left"';
+                                            wrapAlign = 'data-align="left"';
+                                        }
+                                        if (idx === 11) {
+                                            // 8-12: left align
+                                            imgAttrs = 'data-align="left"';
+                                            wrapAlign = 'data-align="left"';
+                                        }
+                                    } else if (project.id === 'sagittal-plane-of-a-chair') {
+                                        if (idx === 0) {
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        if (idx === 1) {
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        if (idx === 2) {
+                                            wrapAttrs = 'data-overlap';
+                                            imgAttrs = 'data-align="left"';
+                                            wrapAlign = 'data-align="left"';
+                                        }
+                                    } else if (project.id === 'korea-post-vip-lounge') {
+                                        if (idx === 1) {
+                                            // 6-2: left align
+                                            imgAttrs = 'data-align="left"';
+                                            wrapAlign = 'data-align="left"';
+                                        }
+                                        if (idx === 4) {
+                                            // 6-5: left align
+                                            imgAttrs = 'data-align="left"';
+                                            wrapAlign = 'data-align="left"';
+                                        }
+                                        if (idx === 5) {
+                                            // 6-6: right align
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        if (idx === 6) {
+                                            // 6-7: right align
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        if (idx === 7) {
+                                            // 6-8: left align
+                                            imgAttrs = 'data-align="left"';
+                                            wrapAlign = 'data-align="left"';
+                                        }
+                                        if (idx === 9) {
+                                            // 6-11: center align
+                                            wrapAlign = '';  // No left/right alignment = centered by default
+                                        }
+                                        if (idx === 10) {
+                                            // 6-12: left align
+                                            imgAttrs = 'data-align="left"';
+                                            wrapAlign = 'data-align="left"';
+                                        }
+                                        if (idx === 12) {
+                                            // 6-14: right align
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        if (idx === 13) {
+                                            // 6-15: right align
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                    } else if (project.id === 'place-1-3-1-1-company') {
+                                        if (idx === 1) {
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        if (idx === 2) {
+                                            imgAttrs = 'data-align="left"';
+                                            wrapAlign = 'data-align="left"';
+                                        }
+                                        if (idx === 4) {
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        // idx === 5 (3-6) is handled in special case block above - skip here
+                                        if (idx === 6) {
+                                            wrapAttrs = 'data-overlap';
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        if (idx === 10) {
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        if (idx === 11) {
+                                            wrapAttrs = 'data-overlap';
+                                            imgAttrs = 'data-align="left"';
+                                            wrapAlign = 'data-align="left"';
+                                        }
+                                        if (idx === 12) {
+                                            // 3-16: center align
+                                            wrapAlign = '';  // No left/right alignment = centered by default
+                                        }
+                                        if (idx === 14) {
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        if (idx === 15) {
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                    } else if (project.id === '1-5-design-lab') {
+                                        if (idx === 1) {
+                                            wrapAttrs = 'data-design-lab-2';
+                                        }
+                                        if (idx === 2) {
+                                            wrapAttrs = 'data-overlap data-design-lab-3';
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        if (idx === 3) {
+                                            wrapAttrs = 'data-design-lab-4';
+                                        }
+                                        if (idx === 4) {
+                                            imgAttrs = 'data-align="left"';
+                                            wrapAlign = 'data-align="left"';
+                                        }
+                                        if (idx === 5) {
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        if (idx === 6) {
+                                            // 1-7: right align
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        if (idx === 7) {
+                                            imgAttrs = 'data-align="left"';
+                                            wrapAlign = 'data-align="left"';
+                                        }
+                                        if (idx === 13) {
+                                            imgAttrs = 'data-align="right"';
+                                            wrapAlign = 'data-align="right"';
+                                        }
+                                        if (idx === 14) {
+                                            imgAttrs = 'data-align="left"';
+                                            wrapAlign = 'data-align="left"';
+                                        }
+                                    }
+                                    
+                                    // Combine wrap attributes
+                                    if (wrapAlign) {
+                                        wrapAttrs = wrapAttrs ? `${wrapAttrs} ${wrapAlign}` : wrapAlign;
+                                    }
+                                    
+                                    // Map project ID to project number (순서대로)
+                                    const projectOrder = [
+                                        '1-5-design-lab',
+                                        'mma-photo-booth',
+                                        'place-1-3-1-1-company',
+                                        'chapel',
+                                        'one-life-welfare-community-center',
+                                        'korea-post-vip-lounge',
+                                        'unbannable-art-piece',
+                                        'module-booth-2-0',
+                                        'sagittal-plane-of-a-chair'
+                                    ];
+                                    const projectNum = projectOrder.indexOf(project.id) + 1;
+                                    
+                                    // Special handling for korea-post-vip-lounge: 9.jpg was deleted, so adjust numbering
+                                    let imageNumber = idx + 1;
+                                    if (project.id === 'korea-post-vip-lounge' && idx >= 8) {
+                                        // idx 8 = 10.jpg (6-10), idx 9 = 11.png (6-11), etc.
+                                        imageNumber = idx + 2; // Skip 9
+                                    }
+                                    
+                                    const imageLabel = `${projectNum}-${imageNumber}`;
+                                    
+                                    // Use eager loading for all images to prevent layout issues
+                                    const loadingStrategy = 'eager';
+                                    
+                                    if (project.id === 'one-life-welfare-community-center' && idx === 2) {
+                                        return `
+                                        <div class="image-wrap" ${wrapAttrsCustom} style="cursor: default;">
+                                            <div class="image-container" style="width:100%!important; margin:0!important; padding:0!important; display:block!important;">
+                                                <img 
+                                                    src="${url}" 
+                                                    alt="${project.title} ${idx}"
+                                                    style="width:100%!important; max-width:100%!important; height:auto!important; object-fit:contain!important; object-position:left!important; margin:0!important; padding:0!important; display:block!important; border:0!important;"
+                                                    loading="${loadingStrategy}"
+                                                    onclick="scrollToImage(this)"
+                                                />
+                                                <div class="image-index">${imageLabel}</div>
+                                            </div>
+                                        </div>
+                                        `;
+                                    }
+                                    return `
+                                    <div class="image-wrap" ${wrapAttrsCustom || wrapAttrs} style="cursor: default;">
+                                        <div class="image-container ${idx === 0 && project.id !== 'sagittal-plane-of-a-chair' ? 'hero-container' : ''}">
+                                            <img 
+                                                src="${url}" 
+                                                alt="${project.title} ${idx}"
+                                                ${idx === 0 ? (project.id === 'sagittal-plane-of-a-chair' ? `class="w-auto h-auto block" ${imgAttrsCustom || imgAttrs} style="cursor: pointer;" onclick="scrollToImage(this)"` : 'data-hero="true" class="hero-img" style="cursor: pointer;" onclick="scrollToImage(this)"') : `class="w-full h-auto block" ${imgAttrsCustom || imgAttrs} style="${scaleStyle} cursor: pointer;" onclick="scrollToImage(this)"`}
+                                                loading="${loadingStrategy}"
+                                            />
+                                            <div class="image-index">${imageLabel}</div>
+                                        </div>
+                                    </div>
+                                `}).join('')}
+                    </div>
+                `;
+                
+                // Mobile: Force scroll to top immediately after rendering
+                if (window.innerWidth <= 768) {
+                    mainContent.scrollTop = 0;
+                }
+                
+                // Force immediate layout calculation for special images
+                requestAnimationFrame(() => {
+                    adjustTallImages();
+                    
+                    // Mobile: Force scroll to top again after layout
+                    if (window.innerWidth <= 768) {
+                        mainContent.scrollTop = 0;
+                    }
+                });
+            } else {
+                mainContent.innerHTML = '<div class="w-full h-full flex items-center justify-center bg-white" />';
+            }
+
+            // Mobile: Remove max-width restriction from project details parent container
+            if (window.innerWidth <= 768) {
+                const projectDetailsParent = document.querySelector('#project-details')?.parentElement;
+                if (projectDetailsParent) {
+                    projectDetailsParent.style.maxWidth = '100%';
+                    projectDetailsParent.style.width = '100%';
+                }
+                
+                // Final force scroll to top
+                mainContent.scrollTop = 0;
+                setTimeout(() => mainContent.scrollTop = 0, 0);
+                setTimeout(() => mainContent.scrollTop = 0, 10);
+                setTimeout(() => mainContent.scrollTop = 0, 50);
+            }
+        }
+
+        // Initialize on load
+        init();
+    </script>
 </body>
 </html>
+
+
