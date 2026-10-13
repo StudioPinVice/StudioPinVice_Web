@@ -213,6 +213,42 @@
             display: none !important;
         }
 
+        /* Studio Pin Vice Office: loose left/right placement of portrait images (desktop only).
+           ::before/::after split the free space l:r, so images never overflow the column. */
+        @media (min-width: 769px) {
+            .images-column .image-wrap[data-spv] {
+                justify-content: flex-start !important;
+            }
+            .images-column .image-wrap[data-spv]::before,
+            .images-column .image-wrap[data-spv]::after {
+                content: '';
+                flex: var(--spv-l, 1) 1 0;
+            }
+            .images-column .image-wrap[data-spv]::after {
+                flex-grow: var(--spv-r, 1);
+            }
+            .images-column .image-wrap[data-spv] .image-container {
+                flex: 0 1 auto;
+            }
+            .images-column .image-wrap[data-spv] img {
+                max-height: calc((100vh - var(--edge-gap)) * var(--spv-s, 1));
+            }
+            .images-column .image-wrap[data-spv="1"] { --spv-l: 0.15; --spv-r: 0.85; --spv-s: 1; align-items: center; }
+            .images-column .image-wrap[data-spv="2"] { --spv-l: 0.85; --spv-r: 0.15; --spv-s: 0.72; align-items: flex-end; }
+            .images-column .image-wrap[data-spv="3"] { --spv-l: 0.4; --spv-r: 0.6; --spv-s: 1; align-items: center; }
+            .images-column .image-wrap[data-spv="5"] { --spv-l: 1; --spv-r: 0; --spv-s: 0.85; align-items: center; }
+            .images-column .image-wrap[data-spv="7"] { --spv-l: 0.08; --spv-r: 0.92; --spv-s: 0.7; align-items: flex-start; }
+            .images-column .image-wrap[data-spv="8"] { --spv-l: 0.65; --spv-r: 0.35; --spv-s: 1; align-items: center; }
+            .images-column .image-wrap[data-spv="9"] { --spv-l: 0.25; --spv-r: 0.75; --spv-s: 0.8; align-items: flex-end; }
+            .images-column .image-wrap[data-spv="10"] { --spv-l: 0.9; --spv-r: 0.1; --spv-s: 1; align-items: center; }
+            .images-column .image-wrap[data-spv="11"] { --spv-l: 0.5; --spv-r: 0.5; --spv-s: 0.68; align-items: center; }
+            .images-column .image-wrap[data-spv="12"] { --spv-l: 0.1; --spv-r: 0.9; --spv-s: 1; align-items: center; }
+            .images-column .image-wrap[data-spv="13"] { --spv-l: 0.75; --spv-r: 0.25; --spv-s: 0.78; align-items: flex-start; }
+            .images-column .image-wrap[data-spv="14"] { --spv-l: 0.3; --spv-r: 0.7; --spv-s: 0.9; align-items: center; }
+            .images-column .image-wrap[data-spv="15"] { --spv-l: 0.6; --spv-r: 0.4; --spv-s: 1; align-items: center; }
+        }
+
+
         /* Hero (first) image should cover and be cropped top/bottom equally */
         .hero-img {
             width: 100% !important;
@@ -961,6 +997,19 @@
         // --- DATA ---
         const PROJECTS = [
             {
+                id: 'studio-pin-vice-office',
+                title: 'Studio Pin Vice Office',
+                type: 'Office',
+                client: 'Studio Pin Vice',
+                location: '2F, 297 Cheongpa-ro, Yongsan-gu, Seoul',
+                floorArea: '',
+                involvement: 'Concept Design, Construction',
+                date: 'April 2026',
+                descriptionKo: '',
+                descriptionEn: '',
+                imageUrl: ''
+            },
+            {
                 id: 'juun-j-beijing',
                 title: 'Juun.J Beijing',
                 type: 'Fashion Store',
@@ -1333,6 +1382,25 @@
             '../11.JuunJChengdu/JuunJChengdu4.jpg',
             '../11.JuunJChengdu/JuunJChengdu5.jpg',
             '../11.JuunJChengdu/JuunJChengdu6.jpg'
+        ];
+
+        const studioPinViceOfficeImages = [
+            '../14. Studio Pinvice Office 300dpi/0.jpg',
+            '../14. Studio Pinvice Office 300dpi/1.jpg',
+            '../14. Studio Pinvice Office 300dpi/2.jpg',
+            '../14. Studio Pinvice Office 300dpi/3.jpg',
+            '../14. Studio Pinvice Office 300dpi/4.jpg',
+            '../14. Studio Pinvice Office 300dpi/5.jpg',
+            '../14. Studio Pinvice Office 300dpi/6.jpg',
+            '../14. Studio Pinvice Office 300dpi/7.jpg',
+            '../14. Studio Pinvice Office 300dpi/8.jpg',
+            '../14. Studio Pinvice Office 300dpi/9.jpg',
+            '../14. Studio Pinvice Office 300dpi/10.jpg',
+            '../14. Studio Pinvice Office 300dpi/11.jpg',
+            '../14. Studio Pinvice Office 300dpi/12.jpg',
+            '../14. Studio Pinvice Office 300dpi/13.jpg',
+            '../14. Studio Pinvice Office 300dpi/14.jpg',
+            '../14. Studio Pinvice Office 300dpi/15.jpg'
         ];
 
         const kuhoDaeguImages = [
@@ -2196,6 +2264,8 @@
                     imgs = juunjChengduImages;
                 } else if (project.id === 'kuho-shinsegae-daegu') {
                     imgs = kuhoDaeguImages;
+                } else if (project.id === 'studio-pin-vice-office') {
+                    imgs = studioPinViceOfficeImages;
                 } else if (project.imageUrl) {
                     imgs = [project.imageUrl];
                 } else {
@@ -2977,6 +3047,10 @@
                                         if (idx === 4) {
                                             imgAttrs = 'data-align="right"';
                                             wrapAlign = 'data-align="right"';
+                                        }
+                                    } else if (project.id === 'studio-pin-vice-office') {
+                                        if (idx > 0) {
+                                            wrapAlign = `data-spv="${idx}"`;
                                         }
                                     }
 
