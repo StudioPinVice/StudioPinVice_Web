@@ -216,18 +216,23 @@
         /* Studio Pin Vice Office: loose left/right placement of portrait images (desktop only).
            ::before/::after split the free space l:r, so images never overflow the column. */
         @media (min-width: 769px) {
-            .images-column .image-wrap[data-spv] {
+            .images-column .image-wrap[data-spv],
+            .images-column .image-wrap[data-rand] {
                 justify-content: flex-start !important;
             }
             .images-column .image-wrap[data-spv]::before,
-            .images-column .image-wrap[data-spv]::after {
+            .images-column .image-wrap[data-spv]::after,
+            .images-column .image-wrap[data-rand]::before,
+            .images-column .image-wrap[data-rand]::after {
                 content: '';
                 flex: var(--spv-l, 1) 1 0;
             }
-            .images-column .image-wrap[data-spv]::after {
+            .images-column .image-wrap[data-spv]::after,
+            .images-column .image-wrap[data-rand]::after {
                 flex-grow: var(--spv-r, 1);
             }
-            .images-column .image-wrap[data-spv] .image-container {
+            .images-column .image-wrap[data-spv] .image-container,
+            .images-column .image-wrap[data-rand] .image-container {
                 flex: 0 1 auto;
             }
             .images-column .image-wrap[data-spv] img {
@@ -2123,6 +2128,171 @@
                         img.parentElement.style.margin = '0';
                     }
                 });
+                randomizePortraitPositions(loaded);
+            });
+        }
+
+        // Random left/right placement of portrait images, re-rolled on every page load.
+        // Set to false to go back to the fixed hand-tuned placement.
+        const RANDOM_PORTRAIT_LAYOUT = true;
+        const randomPortraitPositions = {}; // src -> 0..1 (share of free space on the left)
+        const randomPortraitBites = {};     // src -> vh pulled up beside the previous portrait (0 = none)
+        const BITE_CHANCE = 0.6;            // how often a portrait tries to tuck in beside the previous one
+        const BITE_MIN_VH = 30;             // pull-up range; the wrap already has 12vh margin below
+        const BITE_MAX_VH = 50;
+
+        function randomizePortraitPositions(imgs) {
+            if (!RANDOM_PORTRAIT_LAYOUT) return;
+            const isMobile = window.innerWidth <= 768;
+
+            // Collect the wraps that hold a portrait image (one entry per wrap)
+            const wraps = [];
+            imgs.forEach(img => {
+                const wrap = img.closest('.image-wrap');
+                if (!wrap) return;
+                if (isMobile) {
+                    if (wrap.hasAttribute('data-rand')) restoreWrap(wrap);
+                    return;
+                }
+                if (img.dataset.hero || img.naturalHeight <= img.naturalWidth) return;
+                // Keep hand-built overlapping compositions intact
+                if (wrap.matches('[data-overlap], [data-overlap-large], [data-design-lab-2], [data-design-lab-3], [data-design-lab-4]')) return;
+                if (!wraps.includes(wrap)) wraps.push(wrap);
+            });
+            if (isMobile) return;
+
+            const allImgs = Array.from(document.querySelectorAll('.images-column img'));
+            const keyOf = w => w.querySelector('img').getAttribute('src');
+            let prevWrap = null;
+            wraps.forEach(wrap => {
+                const key = keyOf(wrap);
+                if (!wrap.hasAttribute('data-rand')) {
+                    // Remember the hand-tuned inline styles so we can fall back to them
+                    wrap._origStyle = wrap.getAttribute('style') || '';
+                    wrap._origImgStyles = Array.from(wrap.querySelectorAll('img')).map(im => im.getAttribute('style') || '');
+                }
+
+                // "Bite": like 1-5 Design Lab, pull a portrait up beside the previous portrait
+                // so the two sit side by side with their heights partly overlapping.
+                const prevIsPortrait = prevWrap && wrap.previousElementSibling === prevWrap && prevWrap.hasAttribute('data-rand');
+                let bite = randomPortraitBites[key];
+                if (bite === undefined) bite = Math.random() < BITE_CHANCE ? BITE_MIN_VH + Math.random() * (BITE_MAX_VH - BITE_MIN_VH) : 0;
+                if (!prevIsPortrait) bite = 0;
+
+                let placed = false;
+                if (bite) {
+                    setBite(wrap, bite);
+                    placed = placeWithoutOverlap(wrap, key, allImgs);
+                    if (!placed) {
+                        // Push the previous portrait to one edge and this one to the other
+                        const prevKey = keyOf(prevWrap);
+                        const prevL = currentL(prevWrap);
+                        const othersOfPrev = allImgs.filter(im => !wrap.contains(im));
+                        for (const side of Math.random() < 0.5 ? [0, 1] : [1, 0]) {
+                            applyWrapPosition(prevWrap, side);
+                            if (overlapsOthers(prevWrap, othersOfPrev)) continue;
+                            applyWrapPosition(wrap, 1 - side);
+                            if (!overlapsOthers(wrap, allImgs)) {
+                                randomPortraitPositions[prevKey] = side;
+                                randomPortraitPositions[key] = 1 - side;
+                                placed = true;
+                                break;
+                            }
+                        }
+                        if (!placed) {
+                            applyWrapPosition(prevWrap, prevL);
+                            setBite(wrap, 0);
+                            bite = 0;
+                        }
+                    }
+                }
+                if (!placed) placed = placeWithoutOverlap(wrap, key, allImgs);
+
+                if (placed) {
+                    randomPortraitBites[key] = bite;
+                } else {
+                    restoreWrap(wrap);
+                    delete randomPortraitPositions[key];
+                    delete randomPortraitBites[key];
+                }
+                prevWrap = wrap;
+            });
+
+            // Safety net: a bite also shifts everything below it, so drop any bite that ends in an overlap
+            wraps.slice().reverse().forEach(wrap => {
+                if (wrap._bite && overlapsOthers(wrap, allImgs)) {
+                    setBite(wrap, 0);
+                    randomPortraitBites[keyOf(wrap)] = 0;
+                }
+            });
+        }
+
+        // Rule: portrait images must never overlap another image.
+        // Try the remembered/random spot, re-roll a few times, then scan evenly.
+        function placeWithoutOverlap(wrap, key, allImgs) {
+            const candidates = [randomPortraitPositions[key] ?? Math.random()];
+            for (let i = 0; i < 12; i++) candidates.push(Math.random());
+            for (let i = 0; i <= 20; i++) candidates.push(i / 20);
+            const ok = candidates.find(l => {
+                applyWrapPosition(wrap, l);
+                return !overlapsOthers(wrap, allImgs);
+            });
+            if (ok === undefined) return false;
+            randomPortraitPositions[key] = ok;
+            return true;
+        }
+
+        function setBite(wrap, vh) {
+            wrap._bite = vh;
+            if (vh) {
+                wrap.style.setProperty('margin-top', `-${vh.toFixed(1)}vh`, 'important');
+            } else {
+                // back to whatever margin-top the wrap had originally
+                const orig = document.createElement('div');
+                orig.setAttribute('style', wrap._origStyle || '');
+                const v = orig.style.getPropertyValue('margin-top');
+                if (v) wrap.style.setProperty('margin-top', v, orig.style.getPropertyPriority('margin-top'));
+                else wrap.style.removeProperty('margin-top');
+            }
+        }
+
+        function applyWrapPosition(wrap, l) {
+            wrap.setAttribute('data-rand', '');
+            wrap.style.setProperty('justify-content', 'flex-start', 'important');
+            wrap.style.setProperty('--spv-l', l.toFixed(3));
+            wrap.style.setProperty('--spv-r', (1 - l).toFixed(3));
+            wrap.querySelectorAll('img').forEach(im => {
+                im.style.setProperty('margin-left', '0', 'important');
+                im.style.setProperty('margin-right', '0', 'important');
+            });
+        }
+
+        function currentL(wrap) {
+            return parseFloat(wrap.style.getPropertyValue('--spv-l'));
+        }
+
+        function restoreWrap(wrap) {
+            wrap.removeAttribute('data-rand');
+            wrap._bite = 0;
+            if (wrap._origStyle !== undefined) {
+                wrap.setAttribute('style', wrap._origStyle);
+                wrap.querySelectorAll('img').forEach((im, i) => {
+                    const st = wrap._origImgStyles[i];
+                    if (st !== undefined) im.setAttribute('style', st);
+                });
+            } else {
+                wrap.style.removeProperty('justify-content');
+            }
+        }
+
+        // True if any image in `wrap` overlaps an image outside it
+        function overlapsOthers(wrap, allImgs) {
+            const own = Array.from(wrap.querySelectorAll('img')).map(im => im.getBoundingClientRect()).filter(r => r.width && r.height);
+            return allImgs.some(other => {
+                if (wrap.contains(other)) return false;
+                const b = other.getBoundingClientRect();
+                if (!b.width || !b.height) return false;
+                return own.some(a => a.left < b.right - 1 && b.left < a.right - 1 && a.top < b.bottom - 1 && b.top < a.bottom - 1);
             });
         }
 
